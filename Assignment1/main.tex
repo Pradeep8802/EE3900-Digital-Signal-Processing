@@ -86,7 +86,7 @@ columns=fullflexible
 \newcommand{\BEQA}{\begin{eqnarray}}
 \newcommand{\EEQA}{\end{eqnarray}}
 \newcommand{\define}{\stackrel{\triangle}{=}}
-
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
 \bibliographystyle{IEEEtran}
 %\bibliographystyle{ieeetr}
 
@@ -487,9 +487,20 @@ Let
 H\brak{e^{\j \omega}} = H\brak{z = e^{\j \omega}}.
 \end{equation}
 Plot $\abs{H\brak{e^{\j \omega}}}$.  Is it periodic? If so, find the period.  $H(e^{\j \omega})$ is
-known as the {\em Discret Time Fourier Transform} (DTFT) of $x(n)$.
+known as the {\em Discret Time Fourier Transform} (DTFT) of $h(n)$.
 \\
-\solution $H(e^{jw})$ is given by
+\solution 
+\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/4.5.py
+\end{lstlisting}
+
+$H(e^{jw})$ is given by
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./figs/4.5}
+	\caption{$\abs{H\brak{e^{\j\omega}}}$}
+	\label{fig:4.5}
+\end{figure}
 \begin{align}
 	H(e^{jw})&=\frac{1+(e^{jw})^{-2}}{1+\frac{1}{2}(e^{jw})^{-1}}\\
 	&=2\frac{1+\cos(-2\omega)+j\sin(-2\omega)}{2+\cos(-\omega)+j\sin(-\omega)}\\
@@ -501,129 +512,265 @@ known as the {\em Discret Time Fourier Transform} (DTFT) of $x(n)$.
 So,
 \begin{align}
 	|H(e^{jw})|&=4 |\cos(\omega)| \frac{|e^{jw}|}{|2+e^{jw}|}\\
-	&=\frac{|4\cos(\omega)|}{5+4\cos(\omega)}
+	&=\frac{|4\cos(\omega)|}{\sqrt{5+4\cos(\omega)}}
 \end{align}
 The period of $|\cos(\omega)|$ is $\pi$. The period of $5+4\cos(\omega)$ is $2\pi$. Hence $\abs{H\brak{e^{\j\omega}}}$ is periodic with period $\pi$.( The LCM of the period of $|\cos(\omega)|$ and $5+4\cos(\omega)$ is $\pi$)
 The graph of $\abs{H\brak{e^{\j\omega}}}$ is symmetric with respect to y-axis. It is continuous over $\omega$. The following code plots Fig. \ref{fig:4.5}.
-\begin{lstlisting}
-wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/4.5.py
-\end{lstlisting}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{./figs/4.5}
-\caption{$\abs{H\brak{e^{\j\omega}}}$}
-\label{fig:4.5}
-\end{figure}
-\item Express $x(n)$ in terms of $H\brak{e^{\j \omega}}$.
-\end{enumerate}
 
+\item Express $h(n)$ in terms of $H\brak{e^{\j \omega}}$.\\
+\solution We know that 
+\begin{align}
+	H(e^{j\omega})=\sum_{k=-\infty}^\infty h(k)e^{-j\omega k}
+\end{align}
+\begin{align}
+	h(n)=\frac{1}{2\pi}\int_{-\pi}^\pi H(e^{j\omega})e^{j\omega n}d\omega 
+\end{align}
+\begin{align}
+	\frac{1}{2\pi}\int_{-\pi}^\pi& H(e^{j\omega})e^{j\omega n}d\omega\\
+	&=\frac{1}{2\pi}\int_{-\pi}^\pi \sum_{k=-\infty}^\infty h(k)e^{-j\omega k}e^{j\omega n}d\omega\\
+	&=\frac{1}{2\pi} \sum_{k=-\infty}^\infty h(k)\int_{-\pi}^\pi e^{j\omega (n-k)}d\omega\\
+\end{align}
+case-1:If($n\neq k$)
+\begin{align}
+	&=\frac{1}{2\pi} \sum_{k\neq n} h(k)\frac{e^{j\omega (n-k)}}{j(n-k)}\Biggr] _{-\pi}^\pi \\
+	&=\frac{1}{2\pi} \sum_{k\neq n} h(k)\frac{2\sin(\pi(n-k))}{(n-k)}\\
+	&=0
+\end{align}
+case-2:If($n=k$)
+\begin{align}
+	&=\frac{1}{2\pi}  h(n)\int_{-\pi}^\pi d\omega\\
+	&=h(n)
+\end{align}
+\end{enumerate}
 
 \section{Impulse Response}
 \begin{enumerate}[label=\thesection.\arabic*]
-\item \label{prob:impulse_resp}
-Find an expression for $h(n)$ using $H(z)$, given that 
-%in Problem \ref{eq:ztransab} and \eqref{eq:anun}, given that
-\begin{equation}
-\label{eq:impulse_resp}
-h(n) \ztrans H(z)
-\end{equation}
-and there is a one to one relationship between $h(n)$ and $H(z)$. $h(n)$ is known as the {\em impulse response} of the
-system defined by \eqref{eq:iir_filter}.
-\\
-\solution From \eqref{eq:freq_resp},
+	\item Using long division, 
+	find
+	\begin{align}
+		h(n), \quad n < 5
+	\end{align}
+	for H(z) in 
+	\eqref{eq:freq_resp}.
+	\solution $H(z)$ is given by
+	\begin{align}
+		H(z)=\frac{1+z^{-2}}{1+\frac{1}{2}z^{-1}}=\frac{2+2z^{-2}}{2+z^{-1}}
+	\end{align}
+	\begin{align}
+		&2z^{-1}-4\\	
+		z^{-1}+2\hspace{2mm}&\overline{\big)\hspace{2mm} 2z^{-2}+2\hspace{15mm}}\\
+		& \hspace{2mm} 2z^{-2}+4z^{-1}\\
+		&\overline{\hspace{11mm}-4z^{-1}+2\hspace{5mm}}\\
+		&\hspace{9mm}-4z^{-1}-8\\ 
+		&\overline{\hspace{24mm}10}
+	\end{align}
+	So,
+	\begin{align}
+		H(z)&=2z^{-1}-4+\frac{10}{z^{-1}+2}\\
+		&=2z^{-1}-4+\frac{5}{\frac{1}{2}z^{-1}+1}\\
+		&=2z^{-1}-4+5\sum_{n=0}^\infty \brak{-\frac{z^{-1}}{2}}^{n}\\
+		&=1-\frac{1}{2}z^{-1}+\sum_{n=2}^\infty \brak{-\frac{1}{2}}^{n}z^{-n}
+	\end{align}
+	So,h(n) will be given by 
+	\begin{align}
+		h(n)=\begin{cases}
+			\label{eq:h_n_def}
+			5\times \brak{-\frac{1}{2}}^n  & n\geq 2\\
+			\brak{-\frac{1}{2}}^n  &2>n\geq0\\
+			0 &n<0
+		\end{cases}
+	\end{align}
+	\item \label{prob:impulse_resp}
+	Find an expression for $h(n)$ using $H(z)$, given that 
+	%in Problem \ref{eq:ztransab} and \eqref{eq:anun}, given that
+	\begin{equation}
+		\label{eq:impulse_resp}
+		h(n) \ztrans H(z)
+	\end{equation}
+	and there is a one to one relationship between $h(n)$ and $H(z)$. $h(n)$ is known as the {\em impulse response} of the
+	system defined by \eqref{eq:iir_filter}.
+	\\
+	\solution From \eqref{eq:freq_resp},
+	\begin{align}
+		H(z) &= \frac{1}{1 + \frac{1}{2}z^{-1}} + \frac{ z^{-2}}{1 + \frac{1}{2}z^{-1}}
+		\\
+		\implies h(n) &= \brak{-\frac{1}{2}}^{n}u(n) + \brak{-\frac{1}{2}}^{n-2}u(n-2)
+	\end{align}
+	using \eqref{eq:anun} and \eqref{eq:z_trans_shift}.
+	\item Sketch $h(n)$. Is it bounded? Justify theoreti-
+	cally.
+	\\
+	\solution The following code plots Fig. \ref{fig:5.2}.
+	\begin{lstlisting}
+		wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/5.2.py
+	\end{lstlisting}
+	on simplfying we get h(n) as
+	\begin{align}
+		\begin{cases}
+			%\label{eq:h_n_def}
+			5\times \brak{-\frac{1}{2}}^n  & n\geq 2\\
+			\brak{-\frac{1}{2}}^n  &2>n\geq0\\
+			0 &n<0
+		\end{cases}
+	\end{align}
+	\begin{align}
+		\because 5\times \brak{-\frac{1}{2}}^n \to 0 \quad	\text{for} \quad n\to \infty 
+	\end{align}
+	So, we can conclude that h(n) is bounded.
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\columnwidth]{./figs/5.2.png}
+		\caption{$h(n)$ wrt n}
+		\label{fig:5.2}
+	\end{figure}
+	%
+     \item Convergent? Justify using the ratio test.\\
+\solution We can say a given real sequence $\cbrak{x_n}$ is convergent if 
 \begin{align}
-H(z) &= \frac{1}{1 + \frac{1}{2}z^{-1}} + \frac{ z^{-2}}{1 + \frac{1}{2}z^{-1}}
-\\
-\implies h(n) &= \brak{-\frac{1}{2}}^{n}u(n) + \brak{-\frac{1}{2}}^{n-2}u(n-2)
+	\lim_{n \rightarrow \infty}\abs{\frac{x_{n+1}}{x_n}} < 1
 \end{align}
-using \eqref{eq:anun} and \eqref{eq:z_trans_shift}.
-\item Sketch $h(n)$. Is it bounded? Convergent? 
-\\
-\solution The following code plots Fig. \ref{fig:5.2}.
-\begin{lstlisting}
-wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/5.2.py
-\end{lstlisting}
-The graph of $h(n)$ is bounded and convergent.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{./figs/5.2}
-\caption{$h(n)$ as the inverse of $H(z)$}
-\label{fig:5.2}
-\end{figure}
-%
-\item The system with $h(n)$ is defined to be stable if
-\begin{equation}
-\sum_{n=-\infty}^{\infty}h(n) < \infty
-\end{equation}
-Is the system defined by \eqref{eq:iir_filter} stable for the impulse response in \eqref{eq:impulse_resp}?\\
-\solution 
+This is known as Ratio test.\\
+In this case the limit will become,
 \begin{align}
-\sum_{n=-\infty}^{\infty} h(n) &= \sum_{n=-\infty}^{\infty} \brak{-\frac{1}{2}}^{n}u(n) + \brak{-\frac{1}{2}}^{n-2}u(n-2)\\
-&= \sum_{n=-\infty}^{\infty} \brak{-\frac{1}{2}}^{n}u(n) \\
-&+\sum_{n=-\infty}^{\infty}  \brak{-\frac{1}{2}}^{n-2}u(n-2)\\
-&= \sum_{n=0}^{\infty} \brak{-\frac{1}{2}}^{n} +
-\sum_{n=2}^{\infty}  \brak{-\frac{1}{2}}^{n-2}\\
-&= \frac{2}{3}+\frac{2}{3}=\frac{4}{3}	
+	\lim_{n \rightarrow \infty}\abs{\frac{h\brak{n+1}}{h\brak{n}}} &= \lim_{n \rightarrow \infty}\abs{\frac{5\brak{\frac{-1}{2}}^{n+1}}{5\brak{\frac{-1}{2}}^{n}}} \\
+	&= \lim_{n \rightarrow \infty}\abs{\frac{-1}{2}}\\
+	&= \frac{1}{2}
 \end{align}
-Hence the system defined by \eqref{eq:iir_filter} is stable for the impulse response in \eqref{eq:impulse_resp}.
-%
-\item 
-Compute and sketch $h(n)$ using 
-\begin{equation}
-\label{eq:iir_filter_h}
-h(n) + \frac{1}{2}h(n-1) = \delta(n) + \delta(n-2), 
-\end{equation}
-%
-This is the definition of $h(n)$.
-\\
-\solution The following code plots Fig. \ref{fig:5.4}. Note that this is the same as Fig. 
-\ref{fig:5.4}. 
-%
-\begin{lstlisting}
-wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/5.4.py
-\end{lstlisting}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{./figs/5.4}
-\caption{$h(n)$ from the definition}
-\label{fig:5.4}
-\end{figure}
-%
-\item Compute 
-%
-\begin{equation}
-\label{eq:convolution}
-y(n) = x(n)*h(n) = \sum_{n=-\infty}^{\infty}x(k)h(n-k)
-\end{equation}
-%
-Comment. The operation in \eqref{eq:convolution} is known as
-{\em convolution}.
-%
-\\
-\solution The following code plots Fig. \ref{fig:5.5}. Note that this is the same as 
-$y(n)$ in  Fig. 
-\ref{fig:3.2}. 
-%
-\begin{lstlisting}
-wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/5.5.py
-\end{lstlisting}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{./figs/5.5}
-\caption{$y(n)$ from the definition of convolution}
-\label{fig:5.5}
-\end{figure}
+As $\frac{1}{2} < 1$, from root test we can say that $h\brak{n}$ is convergent.
+	\item The system with $h(n)$ is defined to be stable if
+	\begin{equation}
+		\sum_{n=-\infty}^{\infty}h(n) < \infty
+	\end{equation}
+	Is the system defined by \eqref{eq:iir_filter} stable for the impulse response in \eqref{eq:impulse_resp}?\\
+	\solution For system of 3.2 ,$h(n)$ is defined in \eqref{eq:h_n_def} 
+	So,
+	\begin{align}
+		\sum_{n=-\infty}^{\infty}h(n)&=\sum_{n=2}^{\infty}5\times \brak{-\frac{1}{2}}^n+\sum_{n=0}^{1} \brak{-\frac{1}{2}}^n+\sum_{n=-\infty}^{-1}0\\
+		&=5\times \frac{1}{6}+\frac{1}{2}\\
+		&=\frac{4}{3}
+	\end{align}
+	Since the sum is finite so the system is stable for impulsive response
+	\item Verify the above result using a python code.\\
+	\solution The above result is verified using the below python code
+		\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/Assignment1/codes/5.6.py
+	\end{lstlisting}
+	\item 
+	Compute and sketch $h(n)$ using 
+	\begin{equation}
+		\label{eq:iir_filter_h}
+		h(n) + \frac{1}{2}h(n-1) = \delta(n) + \delta(n-2), 
+	\end{equation}
+	%
+	This is the definition of $h(n)$.
+	\\
+	\solution The following code plots Fig. \ref{fig:h_n_delta}. Note that this is the same as Fig. 
+	\ref{fig:3.1}. 
+	%
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/Assignment1/codes/5.4.py
+	\end{lstlisting}
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\columnwidth]{./figs/5.4.png}
+		\caption{$h(n)$ from the definition}
+		\label{fig:h_n_delta}
+	\end{figure}
+	%
+	\item Compute 
+	%
+	\begin{equation}
+		\label{eq:convolution}
+		y(n) = x(n)*h(n) = \sum_{k=-\infty}^{\infty}x(k)h(n-k)
+	\end{equation}
+	%
+	Comment. The operation in \eqref{eq:convolution} is known as
+	{\em convolution}.
+	%
+	\\
+	\solution The following code plots Fig. \ref{fig:y_n_convo}. Note that this is the same as 
+	$y(n)$ in  Fig. 
+	\ref{fig:3.1}. 
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/Assignment1/codes/5.4.py
+	\end{lstlisting}
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\columnwidth]{./figs/5.4.png}
+		\caption{$y(n)$ from the definition of convolution}
+		\label{fig:y_n_convo}
+	\end{figure}
+	  \item Express the above convolution using a Toeplitz matrix.\\
+	\solution 
+	\begin{figure}
+		\centering
+		\includegraphics[width = \columnwidth]{figs/5.9.png}
+		\caption{Convolution of $x\brak{n}$ and $h\brak{n}$ using toeplitz matrix}
+		\label{5.9}
+	\end{figure}
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/Assignment1/codes/5.9.py
+	\end{lstlisting}
 
-\item Show that
-\begin{equation}
-y(n) =  \sum_{n=-\infty}^{\infty}x(n-k)h(k)
-\end{equation}
-\solution Substituting $k$ as $n-k$ in the equation \eqref{eq:convolution}, we get
-\begin{align}
-	y(n) &= \sum_{n-k=-\infty}^{\infty}x(n-k)h(n-(n-k))\\
-	y(n) &= \sum_{k=-\infty}^{\infty}x(n-k)h(k)
-\end{align}
-Hence showed
+	From $\eqref{eq:convolution}$,we express $y\brak{n}$ as
+	\begin{align}
+		y\brak{n} &= \sum_{k = -\infty}^{\infty}x\brak{k}h\brak{n-k}
+	\end{align}
+	To understand how we can use a Toeplitz matrix, we will see what we are doing in $\eqref{eq:convolution}$ 
+	\begin{align}
+		y\brak{0} &= x\brak{0}h\brak{0}\\
+		y\brak{1} &= x\brak{0}h\brak{1} + x\brak{1}h\brak{0}\\
+		y\brak{2} &= x\brak{0}h\brak{2} + x\brak{1}h\brak{1} + x\brak{2}h\brak{0}\\
+		. \nonumber&\\ 
+		.& \nonumber
+	\end{align}
+	The same thing can be written as,
+	\begin{align}
+		y\brak{0} &= \myvec{h\brak{0} & 0 & 0 &.\,&.\,&.0}\myvec{x\brak{0}\\x\brak{1}\\x\brak{2}\\ . \\.\\x\brak{5}}\\
+		y\brak{1} &= \myvec{h\brak{1} & h\brak{0} & 0 & 0 &.\,&.\,&.0}\myvec{x\brak{0}\\x\brak{1}\\x\brak{2}\\ . \\.\\x\brak{5}}\\
+		y\brak{2} &= \myvec{h\brak{2} & h\brak{1} & h\brak{0} & 0& .\,&.0}\myvec{x\brak{0}\\x\brak{1}\\x\brak{2}\\ . \\.\\x\brak{5}}\\
+		. & \nonumber \\
+		.& \nonumber
+	\end{align}
+	Using Toeplitz matrix of $h\brak{n}$ we can simplify it as,
+	\begin{align}
+		y\brak{n} &= \myvec{h\brak{0} & 0 & 0 &.\,&.\,&.\,0 \\
+			h\brak{1} & h\brak{0} & 0 & .\,&.\,&.\,0 \\
+			h\brak{2} & h\brak{1} & h\brak{0} & .\,&.\,&.\,0 \\
+			&&..\\&&..\\ 0 & 0 &  0 &.\,&.\,&.\, h\brak{m-1}}\myvec{x\brak{0}\\x\brak{1}\\x\brak{2}\\ . \\.\\x\brak{5}}\label{eq:5.9}
+	\end{align}
+	Now from $\eqref{def:xn}$ we will take n 
+	\begin{align}
+		x\brak{n} &= \myvec{1\\2\\3\\4\\2\\1}
+	\end{align}
+	And from $\eqref{eq:h_n_def}$ we will take some values of n,
+	\begin{align} 
+		h\brak{n} &= \myvec{1 \\ -0.5 \\ 1.25 \\. \\ . }
+	\end{align}
+	Now using $\eqref{eq:5.9}$,
+	\begin{align}
+		y\brak{n} &= x\brak{n}*h\brak{n}\\
+		&= \myvec{1 & 0 & 0 &.\,&.\,&.\,0 \\
+			-0.5 & 1 & 0 & .\,&.\,&.\,0 \\
+			1.25 & -0.5 & 1 & .\,&.\,&.\,0 \\
+			&&..\\&&..\\ 0 & 0 &  0 &.\,&.\,&.\, }\myvec{x\brak{0}\\x\brak{1}\\x\brak{2}\\ . \\.\\x\brak{5}} \\
+		&= \myvec{1\\1.5\\3.25\\.\\.\\.}
+	\end{align}
+	
+	\item Show that
+	\begin{equation}
+		y(n) =  \sum_{k=-\infty}^{\infty}x(n-k)h(k)
+	\end{equation}
+	\solution From \eqref{eq:convolution}
+	\begin{align}
+		y(n) = \sum_{k=-\infty}^{\infty}x(k)h(n-k)
+	\end{align}
+	Replacing n-k with a,we get
+	\begin{align}
+		y(n) &= \sum_{n-a=-\infty}^{\infty}x(n-a)h(a)\\
+		&=\sum_{-a=-\infty}^{\infty}x(n-a)h(a)\\
+		&=\sum_{a=-\infty}^{\infty}x(n-a)h(a)
+	\end{align}
 \end{enumerate}
 %
 %%
@@ -728,3 +875,4 @@ IFFT.
 
 
 \end{document}
+
