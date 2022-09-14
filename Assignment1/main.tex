@@ -514,7 +514,7 @@ So,
 	|H(e^{jw})|&=4 |\cos(\omega)| \frac{|e^{jw}|}{|2+e^{jw}|}\\
 	&=\frac{|4\cos(\omega)|}{\sqrt{5+4\cos(\omega)}}
 \end{align}
-The period of $|\cos(\omega)|$ is $\pi$. The period of $5+4\cos(\omega)$ is $2\pi$. Hence $\abs{H\brak{e^{\j\omega}}}$ is periodic with period $\pi$.( The LCM of the period of $|\cos(\omega)|$ and $5+4\cos(\omega)$ is $\pi$)
+The period of $|\cos(\omega)|$ is $\pi$. The period of $5+4\cos(\omega)$ is $2\pi$. Hence $\abs{H\brak{e^{\j\omega}}}$ is periodic with period $2\pi$.( The LCM of the period of $|\cos(\omega)|$ and $5+4\cos(\omega)$ is $2\pi$)
 The graph of $\abs{H\brak{e^{\j\omega}}}$ is symmetric with respect to y-axis. It is continuous over $\omega$. The following code plots Fig. \ref{fig:4.5}.
 
 \item Express $h(n)$ in terms of $H\brak{e^{\j \omega}}$.\\
@@ -571,7 +571,7 @@ Hence, we can say,
 		H(z)&=2z^{-1}-4+\frac{10}{z^{-1}+2}\\
 		&=2z^{-1}-4+\frac{5}{\frac{1}{2}z^{-1}+1}\\
 		&=2z^{-1}-4+5\sum_{n=0}^\infty \brak{-\frac{z^{-1}}{2}}^{n}\\
-		&=1-\frac{1}{2}z^{-1}+\sum_{n=2}^\infty \brak{-\frac{1}{2}}^{n}z^{-n}
+		&=1-\frac{1}{2}z^{-1}+5 \times \sum_{n=2}^\infty \brak{-\frac{1}{2}}^{n}z^{-n}
 	\end{align}
 	So,h(n) will be given by 
 	\begin{align}
@@ -783,14 +783,17 @@ The above equation \eqref{eq:topliz} is the convolution of $x(n)$ and $h(n)$
 \section{DFT and FFT}
 \begin{enumerate}[label=\thesection.\arabic*]
 \item
-Compute
+Compute 
 \begin{equation}
 X(k) \define \sum _{n=0}^{N-1}x(n) e^{-\j2\pi kn/N}, \quad k = 0,1,\dots, N-1
 \end{equation}
 and $H(k)$ using $h(n)$.\\
-\solution \begin{lstlisting}
+\solution 
+Run the following codes to compute $X(k)$ which is plotted in \ref{fig:6.1}.
+\begin{lstlisting}
 wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/6.1.py
 \end{lstlisting}
+Run the following codes to compute $H(k)$.
 \begin{lstlisting}
 wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/6.1_2.py
 \end{lstlisting}
@@ -798,26 +801,29 @@ wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/A
 	\centering
 	\includegraphics[width=\columnwidth]{./figs/6.1_1.png}
 	\caption{DFT of $x(k)$}
-	\label{fig:6.1_1}
+	\label{fig:6.1}
 \end{figure}
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\columnwidth]{./figs/6.1_2.png}
-	\caption{$y(n)$ from the DFT}
-	\label{fig:6.1_2}
+	\caption{$H(n)$}
+	\label{fig:6.2}
 \end{figure}
 \item Compute 
 \begin{equation}
 Y(k) = X(k)H(k)
 \end{equation}
-\solution \begin{lstlisting}
+\solution 
+Run the following codes to compute $Y(k)$ respectively.
+\begin{lstlisting}
 wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/6.2.py
 \end{lstlisting}
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\columnwidth]{./figs/6.2.png}
-	\caption{DFT of $x(k)$}
-	\label{fig:6.2}
+	\caption{DFT of $xyn)$}
+	\label{fig:6.3}
 \end{figure}
 
 \item Compute
@@ -825,7 +831,7 @@ wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/A
 y\brak{n}={\frac {1}{N}}\sum _{k=0}^{N-1}Y\brak{k}\cdot e^{\j 2\pi kn/N},\quad n = 0,1,\dots, N-1
 \end{equation}
 \\
-\solution The following code plots Fig. \ref{fig:ynconv}. Note that this is the same as 
+\solution The following code plots Fig. \ref{fig:6.3}. Note that this is the same as 
 
 $y(n)$ in  Fig. 
 \ref{fig:3.1}. 
@@ -836,14 +842,14 @@ wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/A
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\columnwidth]{./figs/6.3.png}
-\caption{$y(n)$ from the DFT}
-\label{fig:yndft}
+\caption{$y(n)$}
+\label{fig:6.4}
 \end{figure}
-
-\item Repeat the previous exercise by computing $X(k), H(k)$ and $y(n)$ through FFT and 
-IFFT.
-\item Wherever possible, express all the above equations as matrix equations.
-\end{enumerate}
+%
+%\item Repeat the previous exercise by computing $X(k), H(k)$ and $y(n)$ through FFT and 
+%IFFT.
+%\item Wherever possible, express all the above equations as matrix equations.
+%\end{enumerate}
 %
 %\section{Exercises}
 %
@@ -879,5 +885,128 @@ IFFT.
 %Modifying the code with different input parameters and to get the best possible output.
 %%
 
-
+	\item Repeat the previous exercise by computing $X(k), H(k)$ and $y(n)$ through FFT and 
+	IFFT.\\
+	\solution 
+	Run the following code to plot 
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/Assignment1/codes/6.4.py
+	\end{lstlisting}
+	
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./figs/6.4.png}
+	\caption{ $y(n)$ }
+	% $y(n)$ from the DFT
+	\label{fig:6.5}
+\end{figure}
+%	\begin{figure}[!ht]
+%		\centering
+%		\includegraphics[width=\columnwidth]{/home/pranav/Desktop/Signal processing/6/fft_ifft}
+%		\caption{IFFT}
+%		\label{fig:fft_ifft}
+%	\end{figure}
+%	\item Wherever possible, express all the above equations as matrix equations.
+%	\\
+%	\solution 
+%	\begin{align}
+%		\vec{x} &= \myvec{x_0 & x_1	 & \cdots & x_{N-1}}^\top \\
+%		\vec{h} &= \myvec{x_0 & x_1	 & \cdots & x_{N-1}}^\top \\
+%		\vec{y} &= \vec{x} \circledast \vec{h} \\
+%		\myvec{y_1 \\ y_2 \\ \vdots \\ y_{2N - 1}} &= \myvec{
+%			h_0 & 0 & 0 & \cdots & 0 \\
+%			h_1 & h_0 & 0 & \cdots & 0 \\
+%			h_2 & h_1 & h_0 & \cdots & 0 \\
+%			\vdots & \vdots & \vdots & \ddots & \vdots \\
+%			h_{N-1} & h_{N-2} & h_{N-3} & \cdots & h_0 \\
+%			0 & h_{N-1} & h_{N-2} & \cdots & h_1 \\
+%			0 & 0 & h_{N-1} & \cdots & h_2 \\
+%			\vdots & \vdots & \vdots & \ddots & \vdots \\
+%			0 & 0 & 0 & \cdots & h_{N-1}
+%		}		
+%		\myvec{x_1\\x_2\\ \vdots \\x_N}
+%	\end{align}
+%	
+%	The convolution can be written using a Toeplitz matrix. 
+%	
+%	Consider the DFT matrix
+%	\begin{align}
+%		\vec{W} = \myvec{
+%			1 & 1 & 1 & 1 & \cdots & 1 \\
+%			1 & \omega & \omega^2 & \omega^3 & \cdots & \omega^{N-1} \\
+%			1 & \omega^2 & \omega^4 & \omega^6 & \cdots & \omega^{2(N-1)} \\
+%			1 & \omega^3 & \omega^6 & \omega^9 & \cdots & \omega^{3(N-1)} \\
+%			\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\ 
+%			1 & \omega^{N-1} & \omega^{2(N-1)} & \omega^{3(N-1)} & \cdots & \omega^{(N-1)(N-1)}
+%		}
+%	\end{align}
+%	
+%	where $\omega = e^{-\j 2\pi/N}$ is the $N^{\mathrm{th}}$ root of unity
+%	
+%	Then the discrete Fourier transforms of $\vec{x}$ and $\vec{h}$ are given by
+%	\begin{align}
+%		\vec{X} &= \vec{W} \vec{x} \\
+%		\vec{H} &= \vec{W} \vec{h}
+%	\end{align}
+%	
+%	$\vec{Y}$ is then given by
+%	\begin{equation}
+%		\vec{Y} = \vec{X} \circ \vec{H}
+%	\end{equation}
+%	where $\circ$ denotes the Hadamard product (element-wise multiplication)
+%	
+%	But $\vec{Y}$ is the discrete Fourier transform of the filter output $\vec{y}$
+%	\begin{equation}
+%		\vec{Y} = \vec{W} \vec{y}
+%	\end{equation}
+%	Thus,
+%	\begin{align}
+%		\vec{W} \vec{y} &= \vec{X} \circ \vec{H} \\
+%		\implies \vec{y} &= \vec{W}^{-1} \brak{\vec{X} \circ \vec{H}} \\
+%		&= \vec{W}^{-1} \brak{\vec{W} \vec{x} \circ \vec{W} \vec{h}}
+%	\end{align}
+%	This is the inverse discrete Fourier transform of $\vec{Y}$
+\end{enumerate}
+%%
+%\section{Exercises}
+%Answer the following questions by looking at the python code in Problem \ref{prob:output}.
+%\begin{enumerate}[label=\thesection.\arabic*]
+%	\item
+%	The command
+%	\begin{lstlisting}
+%		output_signal = signal.lfilter(b, a, input_signal)
+%	\end{lstlisting}
+%	in Problem \ref{prob:output} is executed through the following difference equation
+%	\begin{equation}
+%		\label{eq:iir_filter_gen}
+%		\sum _{m=0}^{M}a\brak{m}y\brak{n-m}=\sum _{k=0}^{N}b\brak{k}x\brak{n-k}
+%	\end{equation}
+%	%
+%	where the input signal is $x(n)$ and the output signal is $y(n)$ with initial values all 0. Replace
+%	\textbf{signal.filtfilt} with your own routine and verify.\\
+%	\solution
+%	Run the following code 
+%	\begin{lstlisting}
+%		wget https://github.com/Pranavb060504/SIgnalProcessing/blob/main/7/7_1.py
+%	\end{lstlisting}
+%	Use the following command in the terminal to run the code
+%	\begin{lstlisting}
+%		python3 7_1.py
+%	\end{lstlisting}
+%	%
+%	\item Repeat all the exercises in the previous sections for the above $a$ and $b$.
+%	\item What is the sampling frequency of the input signal?
+%	\\
+%	\solution
+%	Sampling frequency(fs)=44.1kHZ.
+%	\item
+%	What is type, order and  cutoff-frequency of the above butterworth filter
+%	\\
+%	\solution
+%	The given butterworth filter is low pass with order=4 and cutoff-frequency=4kHz.
+%	%
+%	\item
+%	Modifying the code with different input parameters and to get the best possible output.
+%	%
+%\end{enumerate}
 \end{document}
