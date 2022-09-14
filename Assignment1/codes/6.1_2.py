@@ -17,8 +17,8 @@ for k in range(0,N):
 H = np.real(H)
 #plots
 plt.stem(range(0,N),H)
-plt.title('Graph of H(n)')
-plt.xlabel('$n$')
-plt.ylabel('$H(n)$')
+plt.title('Graph of H(k)')
+plt.xlabel('$k$')
+plt.ylabel('$H(k)$')
 plt.grid()# minor
 plt.show()

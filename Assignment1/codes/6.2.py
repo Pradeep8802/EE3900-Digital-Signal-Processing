@@ -23,11 +23,11 @@ for k in range(0,N):
 Y = np.zeros(N) + 1j*np.zeros(N)
 for k in range(0,N):
 	Y[k] = X[k]*H[k]
-
+Y = np.real(Y)
 #plots
 plt.stem(range(0,N),Y)
-plt.title('Graph of Y(n)')
-plt.xlabel('$n$')
-plt.ylabel('$Y(n)$')
+plt.title('Graph of Y(k)')
+plt.xlabel('$k$')
+plt.ylabel('$Y(k)$')
 plt.grid()# minor
 plt.show()

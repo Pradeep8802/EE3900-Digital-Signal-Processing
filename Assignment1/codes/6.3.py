@@ -1,40 +1,70 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy
+# #If using termux
+# import subprocess
+# import shlex
+# #end if
 
-N = 14
+
+N = 20
 n = np.arange(N)
 fn=(-1/2)**n
 hn1=np.pad(fn, (0,2), 'constant', constant_values=(0))
 hn2=np.pad(fn, (2,0), 'constant', constant_values=(0))
 h = hn1+hn2
 
-xtemp=np.array([1.0,2.0,3.0,4.0,2.0,1.0])
-x=np.pad(xtemp, (0,8), 'constant', constant_values=(0))
+def x(n):
+    if n < 0 or n >5 :
+        return 0
+    elif n < 4:
+        return n+1
+    else :
+        return 6-n
+	
+def u(n):
+    if n <0:
+        return 0
+    else :
+        return 1
 
-X = np.zeros(N) + 1j*np.zeros(N)
-for k in range(0,N):
-	for n in range(0,N):
-		X[k]+=x[n]*np.exp(-1j*2*np.pi*n*k/N)
-H = np.zeros(N) + 1j*np.zeros(N)
-for k in range(0,N):
-	for n in range(0,N):
-		H[k]+=h[n]*np.exp(-1j*2*np.pi*n*k/N)
+def h(n):
+    return (-1/2)**n*u(n) + (-1/2)**(n-2)*u(n-2)
 
-Y = np.zeros(N) + 1j*np.zeros(N)
-for k in range(0,N):
-	Y[k] = X[k]*H[k]
+def y(n):
+    if n < 0:
+        return 0
+    else:
+        return x(n) + x(n-2) - 0.5 * y(n-1)
 
-y = np.zeros(N) + 1j*np.zeros(N)
-for k in range(0,N):
-	for n in range(0,N):
-		y[k]+=Y[n]*np.exp(1j*2*np.pi*n*k/N)
+def X(k,N):
+    Xn  = 0
+    for i in range(N):
+        Xn =Xn+ x(i)*(np.exp(-1j*2*np.pi*i*k/N))
+    return Xn
 
-#print(X)
-y = np.real(y)/N
-#plots
-plt.stem(range(0,N),y)
+def H(k,N):
+    Hn  = 0
+    for i in range(N):
+        Hn =Hn+ h(i)*(np.exp(-1j*2*np.pi*i*k/N))
+    return Hn
+
+def Y(k,N):
+    return H(k,N)*X(k,N)
+
+def y_idft(n,N):
+	sum = 0
+	for i in range(N):
+		sum+= Y(i,N)*np.exp((2j* np.pi *i*n)/N)
+	return np.real(sum)/N
+
+yDifferenceEq = scipy.vectorize(y)
+k = np.arange(N)
+plt.stem(k,y_idft(k,N),markerfmt='ro')
+plt.stem(k,yDifferenceEq(k),linefmt = "b--",markerfmt = 'bo')
 plt.title('Filter Output using DFT')
+plt.legend(['IDFT','Difference'])
 plt.xlabel('$n$')
 plt.ylabel('$y(n)$')
-plt.grid()# minor
+plt.grid()
 plt.show()

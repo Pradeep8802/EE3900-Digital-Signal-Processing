@@ -16,17 +16,11 @@ for k in range(0,N):
 	for n in range(0,N):
 		X[k]+=x[n]*np.exp(-1j*2*np.pi*n*k/N)
 
-#print(X)
 y = np.real(X)
 #plots
 plt.stem(range(0,N),y)
-plt.title('DFT of x(k)')
+plt.title('DFT of x(n)')
 plt.xlabel('$k$')
 plt.ylabel('$X(k)$')
-plt.grid()# minor
+plt.grid() # minor
 plt.show()
-
-
-
-
-
