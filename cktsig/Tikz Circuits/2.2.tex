@@ -1,0 +1,41 @@
+% \begin{circuitikz}[scale=0.7]
+% 
+%	\draw (0,0) to [battery1,l_=$1V$] ++(0,-3)
+%	
+%	to ++(11.5,0) to [battery1,l_=$2V$,invert]++(0,3)
+%	
+%	to [american resistor,l_=$2\Omega$] ++(-6,0)
+%	
+%	to [capacitor,l_=$1 \mu F$] ++(0,-3);
+%	
+%	\draw (0,0) to ++(0.7,0) node[anchor=north east]{P};
+%	
+%	\draw (1,-3) to ++(0,2.6)node[anchor=north west]{Q};
+%	
+%	\draw (4.5,0) to ++(1.5,0);
+%	
+%	\draw (4.5,0) to [american resistor,l_=$1\Omega$]++(-2,0) 
+%	
+%	to ++(-0.8,0.5)node[anchor=south west]{S};
+%	
+%\end{circuitikz}
+\begin{circuitikz}[scale=0.7] 
+\draw (0,0) to [battery1,l_=$1V$] ++(0,-3)
+	
+	to ++(11.5,0) to [battery1,l_=$2V$,invert]++(0,3)
+	
+	to [american resistor,l_=$2\Omega$] ++(-6,0)
+	
+	to [capacitor,l_=$1 \mu F$] ++(0,-3);
+	
+	\draw (0,0) to ++(0.7,0) node[anchor=north east]{P};
+	
+	\draw (1,-3) to ++(0,2.6)node[anchor=north west]{Q};
+	
+	\draw (4.5,0) to ++(1.5,0);
+	
+	\draw (4.5,0) to [american resistor,l_=$1\Omega$]++(-3,0) 
+	
+	to ++(-0.8,0.4)node[anchor=south west]{S};
+;
+\end{circuitikz}
