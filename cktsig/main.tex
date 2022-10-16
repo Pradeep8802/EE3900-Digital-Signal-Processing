@@ -175,7 +175,7 @@ For $u(t)$, we have,
 		\end{align}
 		\begin{figure}[!ht]
 			\centering
-			\includegraphics[width=\columnwidth]{figs/2.5}
+			\includegraphics[width=\columnwidth]{figs/2.5.png}
 			\caption{}
 			\label{fig:roc2}
 \end{figure}
@@ -196,28 +196,33 @@ For $u(t)$, we have,
 		Find the voltage across the capacitor $V_{C_0}(s)$.\\
 		\solution
 		\begin{align}
-		R_{eff}=\frac{\frac{2}{2}+\frac{1}{1}}{1+\frac{1}{2}}
-		=\frac{4}{3} \Omega\\
+		R_{eff}=\frac{1}{1+\frac{1}{2}}
+		=\frac{2}{3} \Omega\\
 		V_{eff}=\frac{1}{1+\frac{1}{2}}
 		=\frac{2}{3}V
 		\end{align}
 		%Effective Circuit in Laplacian Space is
 \begin{align}
 V_{C_0}(s)&=V_{S}(s)\frac{C_{0}}{C_{0}+R_{eff}}\\
-&=\brak{\frac{4}{3s}}\brak{\frac{\frac{1}{s}}{\frac{1}{s}+\frac{4}{3}}}\\
+&=\brak{\frac{4}{3s}}\brak{\frac{\frac{1}{s}}{\frac{1}{s}+\frac{2}{3}}}\\
 \label{eq:laptr}
-&=\frac{4}{s\brak{4s+3}}
+&=\frac{3+4s}{3s\brak{s+\frac{3}{2}}}
 \end{align}
 	\item Find $v_{C_0}(t)$.  Plot using python.\\
-	\solution Using \eqref{eq:laptr},
+	\solution Running the following code gives the plot.
+	\begin{lstlisting}
+		wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/2.7.py
+	\end{lstlisting}
+	
+	Using \eqref{eq:laptr},
 	\begin{align}
-	\frac{4}{s\brak{4s+3}}&=\frac{4}{3s}-\frac{4}{3(\frac{3}{2}+s)}
+	\frac{3+4s}{3s\brak{s+\frac{3}{2}}}&=\frac{2}{3s}+\frac{2}{3(\frac{3}{2}+s)}
 	\end{align}
 	Apply inverse Laplacian Transform,
 	\begin{align}
 	V_{C_0}(s)\system{L^{-1}}V_{C_0}(t)\\
-	\laplaceinv{V_{C_0}(s)}&=\laplaceinv{\frac{4}{3s}-\frac{4}{3(\frac{3}{2}+s)}}\\
-&=	\laplaceinv{\frac{4}{3s}}-\frac{4}{3}\laplaceinv{\frac{1}{\frac{3}{2}+s}}
+	\laplaceinv{V_{C_0}(s)}&=\laplaceinv{\frac{2}{3s}+\frac{2}{3(\frac{3}{2}+s)}}\\
+&=	\laplaceinv{\frac{2}{3s}}-\frac{2}{3}\laplaceinv{\frac{1}{\frac{3}{2}+s}}
 \end{align}
 Since,
 \begin{align}
@@ -226,21 +231,57 @@ Since,
 \end{align}
 Using the above equations,
 \begin{align}
-V_{C_0}(t)=\frac{4}{3}\brak{ 1-e^{\frac{-3}{2} t}}u(t)
+V_{C_0}(t)=\frac{2}{3}\brak{ 1+e^{\frac{-3}{2} t}}u(t)
 	\end{align}
 	\begin{figure}[!ht]
 			\centering
 			\includegraphics[width=\columnwidth]{figs/2.7.png}
 			\caption{Plot of $V_{C_0}(t)$}
-			%\label{fig:lap-ckt}
+			\label{fig:lap}
 \end{figure}
 	\item Verify your result using ngspice.\\
 \solution \begin{figure}[!ht]
 			\centering
-			\includegraphics[width=\columnwidth]{figs/2.8}
+			\includegraphics[width=\columnwidth]{figs/2.8.png}
 			\caption{}
 			\label{fig:ngspice}
 \end{figure}
+
+\item Obtain Fig. \ref{fig:lap} using the equivalent differential equation
+
+\solution Results obtained can be verified by running the following code.
+\begin{lstlisting}
+	wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/2.8.cir
+\end{lstlisting}
+And is plotted using the below code.
+\begin{lstlisting}
+	wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/2.8.py
+\end{lstlisting}
+Using Kirchoff's junction law
+\begin{align}
+	\frac{v_c(t) - v_1(t)}{R_1} + \frac{v_c(t) - v_2(t)}{R_2} + \frac{\der{q}}{\der{t}} = 0
+\end{align}
+where $q(t)$ is the charge on the capacitor
+
+On taking the Laplace transform on both sides of this equation
+\begin{align}
+	\frac{V_c(s) - V_1(s)}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + \brak{sQ(s) - q(0^-)} = 0
+\end{align}
+
+But $q(0^-) = 0$ and 
+\begin{align}
+	q(t) &= C_0v_c(t) \\
+	\implies Q(s) &= C_0V_c(s)
+\end{align}
+
+Thus
+\begin{align}
+	&\frac{V_c(s) - V_1(s)}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + sC_0V_c(s) = 0 \\
+	\implies &\frac{V_c(s) - V_1(s)}{R_1} + 	\frac{V_c(s) - V_2(s)}{R_2} + \frac{V_c(s) - 0}{\frac{1}{sC_0}} = 0 
+\end{align}
+
+which is the same equation as the one we obtained from Fig. \ref{fig:lap}
+
 \end{enumerate}
 
  \section{Initial Conditions}
@@ -273,7 +314,11 @@ Use latex-tikz.
 \label{eq:v2-s}
 \end{align} 
 	\item $v_{C_0}(t)$ = ? Plot using python.\\
-	\solution From \eqref{eq:v2-s},
+	\solution Running the following code gives the plot.
+	\begin{lstlisting}
+		wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/3.4.py
+	\end{lstlisting}
+	From \eqref{eq:v2-s},
 \begin{align}
     &V_{C_0}(s) = \frac{4}{3}\brak{\frac{1}{\frac{1}{C_0}\brak{\frac{1}{R_1} + \frac{1}{R_2}}+s}} \nonumber \\
     &+ \frac{2}{R_2\brak{\frac{1}{R_1} +\frac{1}{R_2}}}\brak{\frac{1}{s} - \frac{1}{\frac{1}{C_0}\brak{\frac{1}{R_1} + \frac{1}{R_2}} + s}}
@@ -296,12 +341,21 @@ Substituting values gives
 \end{figure}
 	\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=\columnwidth]{figs/3.5}
+	\includegraphics[width=\columnwidth]{figs/3.5.png}
 	\caption{ngspice plot of $V_{C_0}(t)$} 
 	\label{fig:ngspice2}
 \end{figure}
 	\item Verify your result using ngspice.\\
-	\solution The figure \ref{fig:ngspice2} verifies our result. 
+	\solution Results obtained can be verified by running the following code.
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/3.5.cir
+	\end{lstlisting}
+Runningn the below code plots the figure \ref{fig:ngspice2}, and verifies our result.
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/3.5.py
+	\end{lstlisting}
+
+
 
 	\item Find $v_{C_0}(0-), v_{C_0}(0+)$ and  $v_{C_0}(\infty) $.\\
 \solution From the initial conditions,
@@ -314,7 +368,32 @@ Using \eqref{eq:v2-t},
     v_{C_0}(\infty) &= \lim_{t \to \infty}v_{C_0}(t) = {\frac{2}{3}}{V}
 \end{align}
 
+\item Obtain Fig. \ref{prob:init} using the equivalent differential equation
 
-	\end{enumerate}
+\solution Using Kirchoff's junction law
+\begin{align}
+	\frac{v_c(t) - 0}{R_1} + \frac{v_c(t) - v_2(t)}{R_2} + \frac{\der{q}}{\der{t}} = 0
+\end{align}
+where $q(t)$ is the charge on the capacitor
+
+On taking the Laplace transform on both sides of this equation
+\begin{align}
+	\frac{V_c(s) - 0}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + \brak{sQ(s) - q(0^-)} = 0
+\end{align}
+
+But $q(0^-) = \frac43 C_0$ and 
+\begin{align}
+	q(t) &= C_0v_c(t) \\
+	\implies Q(s) &= C_0V_c(s)
+\end{align}
+
+Thus
+\begin{align}
+	&\frac{V_c(s) - 0}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + \brak{sC_0V_c(s) - \frac43 C_0} = 0 \\
+	\implies &\frac{V_c(s) - 0}{R_1} + 	\frac{V_c(s) - V_2(s)}{R_2} + \frac{V_c(s) - \frac{4}{3s}}{\frac{1}{sC_0}} = 0 
+\end{align}
+
+which is the same equation as the one we obtained from Fig. \ref{prob:init}
+\end{enumerate}
 
 \end{document}
