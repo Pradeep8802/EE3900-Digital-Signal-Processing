@@ -1,16 +1,14 @@
-*2.8
+Problem 2.8
+V1 v1 0 1
+V2 v2 0 2
+R1 vc v1 1
+R2 vc v2 2
+C0 vc 0 1u ic=0
+.tran 100u 5u uic
 
-r1 1 2 1
-r2 2 3 2
-c1 2 0 1u ic=0
-v1 1 0 1
-v2 3 0 2
-
-.tran 10p 10u 0 uic
 .control
 run
-set gnuplot_terminal=pdf/quit
-gnuplot ../figs/2.8 v(2)
+wrdata 2.8.dat V(vc)
 .endc
 
 .end

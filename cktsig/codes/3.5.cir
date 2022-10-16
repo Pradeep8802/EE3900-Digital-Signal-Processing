@@ -8,9 +8,12 @@ V2 3 0 dc 2V
 .tran 10p 10u uic
 
 .control
+set filetype=ascii
 run
-set gnuplot_terminal=pdf/quit
-gnuplot ../figs/3.5 v(X) 
+plot v(X)
+wrdata 3.5.dat v(X)
+//set gnuplot_terminal=pdf/quit
+//gnuplot ../figs/3.5 v(X) 
 .endc
 
 .end
