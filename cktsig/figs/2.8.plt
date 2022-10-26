@@ -1,5 +1,5 @@
 set terminal X11 noenhanced
-set title "2.8"
+set title "*2.8"
 set xlabel "s"
 set ylabel "V"
 set grid

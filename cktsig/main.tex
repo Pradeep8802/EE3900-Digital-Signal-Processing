@@ -372,13 +372,13 @@ Using \eqref{eq:v2-t},
 
 \solution Using Kirchoff's junction law
 \begin{align}
+	\label{eq:a}
 	\frac{v_c(t) - 0}{R_1} + \frac{v_c(t) - v_2(t)}{R_2} + \frac{\der{q}}{\der{t}} = 0
 \end{align}
-where $q(t)$ is the charge on the capacitor
-
-On taking the Laplace transform on both sides of this equation
+where $q(t)$ is the charge on the capacitor.
+On taking the Laplace transform on both sides of the equation \eqref{eq:a}, we get,
 \begin{align}
-	\frac{V_c(s) - 0}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + \brak{sQ(s) - q(0^-)} = 0
+	\frac{V_c(s) - 0}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} +sQ(s) - q(0^-) = 0
 \end{align}
 
 But $q(0^-) = \frac43 C_0$ and 
@@ -394,6 +394,161 @@ Thus
 \end{align}
 
 which is the same equation as the one we obtained from Fig. \ref{prob:init}
+\end{enumerate}
+	
+
+\section{Bilinear Transform}
+\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
+	\item In Fig. \ref{fig:ckt}, consider the case when $S$ is switched to $Q$ right in the beginning. Formulate the differential equation
+	
+	\solution 
+		\begin{figure}[!ht]
+		\centering
+		\input{Tikz Circuits/4.1.tex}
+		\caption{Switch S connected to Q initially}
+		\label{fig:4.1}
+	\end{figure}
+Considering KCL on the circuit \ref{fig:4.1}, we get the differential equuation as 
+	\begin{align}
+		\label{eq:diff.4.1}
+		&\frac{v_c(t) - 0}{R_1} + \frac{v_c(t) - v_2(t)}{R_2} + \frac{\der{q}}{\der{t}} = 0 \\
+		\implies &\frac{v_c(t)}{R_1} + \frac{v_c(t) - v_2(t)}{R_2} + C_0\frac{\der{v_c}}{\der{t}} = 0
+	\end{align}
+Here we have $q(0)=0$, since initially the capacitor is uncharged.
+	
+	\item Find $H(s)$ considering the ouput voltage at the capacitor
+	
+	\solution Applying laplace transform to the equation \eqref{eq:diff.4.1}, we get
+		\begin{align}
+		&\frac{V_c(s)}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + \mathcal{L}(\frac{\der{q}}{\der{t}})= 0 \\
+		&\frac{V_c(s)}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + sQ(s) - q(0) = 0 \\
+		&\frac{V_c(s)}{R_1} + \frac{V_c(s) - V_2(s)}{R_2} + sQ(s) - 0 = 0 \\
+		\implies &V_c(s) \brak{\frac{1}{R_1} + \frac{1}{R_2}} + sC_0V_c(s) = \frac{V_2(s)}{R_2} \\
+		\implies &\frac{V_c(s)}{V_2(s)} = \frac{\frac{1}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} + sC_0}
+	\end{align}
+	Here, $Q(s)$ is the laplace transform of q, $V_c(s)$ is laplace transform of $v_c(t)$.
+	Hence, the transform function($H(s)$) is 
+	\begin{align}
+		H(s) &= \frac{V_c(s)}{V_2(s)} \\
+		&=\frac{\frac{1}{R_2C_0}}{s + \frac{1}{R_1C_0} + \frac{1}{R_2C_0}}
+	\end{align}
+	Substituting values of $R_1=1\Omega$,$R_2=2\Omega$ and $C_0=1\mu F$, we get,
+	\begin{align}
+		H(s) &= \frac{0.5}{s 10^{-6} + 1.5}\\
+		\label{eq:Hs}
+		\implies H(s)&=\frac{5 \times 10^5}{s + 1.5 \times 10^6}
+	\end{align}
+
+	\item Plot $H(s)$.  What kind of filter is it?
+	
+	\solution THe below python code plots the Figure \ref{fig-4.3}
+	\begin{lstlisting}
+	wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/4.3.py
+	\end{lstlisting}
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\columnwidth]{./figs/4.3.png}
+		\caption{Plot of $H(s)$}
+		\label{fig-4.3}	
+	\end{figure}
+	
+	Considering the frequency-domain transfer function ($H(s=e^{j\omega})$), from \eqref{eq:Hs},we get
+	\begin{align}
+		\label{eq:Hw}
+		H(s=j\omega) &= \frac{5 \times 10^5}{j\omega + 1.5 \times 10^6} \\
+		\implies \abs{H(s=j\omega)} &= \frac{5 \times 10^5}{\sqrt{\omega^2 + 2.25\times10^{12}}}
+	\end{align}
+Clearly from \eqref{eq:Hw}, as $\omega$ increases, $H(s=j\omega)$ decreases(inverse proportionality). When high frequency signals( large values of $\omega$) pass through this transfer function ($H(s=j\omega$)), they become negligible, which results in removing high frequnecy signals and allowing only low frequency signal to pass. Hence, this is a low-pass filter.
+	\item Using trapezoidal rule for integration, formulate the difference equation by considering 
+	\begin{align}
+		y(n) = y(t)\vert_{t=n}
+	\end{align}
+	
+	\solution
+	In the equation \eqref{eq:diff.4.1}, we have
+	\begin{align}
+		\frac{\der{q}}{\der{t}}&=C_0\frac{\der{v_c}}{\der{t}}\\
+		v_2(t)&=2u(n)
+	\end{align} 
+Hence,
+	\begin{align}
+		&\frac{v_c(t)}{R_1} + \frac{v_c(t) - v_2(t)}{R_2} + C_0\frac{\der{v_c}}{\der{t}} = 0 \\
+		\implies &C_0\frac{\der{v_c}}{\der{t}} = \frac{2u(t)-v_c(t)}{R_2} - \frac{v_c(t)}{R_1} \\
+		\implies &\frac{\der{v_c}}{\der{t}} = \frac{2u(t)-v_c(t)}{R_2 C_0} - \frac{v_c(t)}{R_1 C_0} \\
+		\label{eq:trap}
+		\implies &\left.v_c(t)\right|_{t=n}^{n+1} = \int_{n}^{n+1} \brak{\frac{2u(t)-v_c(t)}{R_2C_0} - \frac{v_c(t)}{R_1C_0}} \der{t}
+	\end{align}
+	
+	From trapezoidal rule of integration
+	\begin{align}
+		\label{eq:traprule}
+		\int_a^b f(t) \der{t} \approx \frac{b-a}{2} (f(a) + f(b))
+	\end{align}
+	Apply \eqref{eq:traprule}, to the RHS of the equation \eqref{eq:trap}, we get,
+	\begin{align}
+		\int_{n}^{n+1} \frac{2u(t)-v_c(t)}{R_2C_0} &- \frac{v_c(t)}{R_1C_0} \der{t}=\frac{1}{R_2C_0}\brak{u(n)+u(n+1)}\\&- \frac12(y(n+1) + y(n))\brak{\frac{1}{R_1C_0} + \frac{1}{R_2C_0}}
+	\end{align}
+	Considering $y(t) = v_c(t)$, from \eqref{eq:trap}, we get,
+	\begin{multline}
+		y(n+1) - y(n) = \frac{1}{R_2C_0}\brak{u(n)+u(n+1)} \\
+		- \frac12(y(n+1) + y(n))\brak{\frac{1}{R_1C_0} + \frac{1}{R_2C_0}}
+	\end{multline}
+	Thus, the difference equation is
+	\begin{multline}
+		\implies y(n+1) \brak{1 + \frac{1}{2R_1C_0} + \frac{1}{2R_2C_0}} \\= y(n) \brak{1 - \frac{1}{2R_1C_0} - \frac{1}{2R_2C_0}} \\+ \frac{1}{R_2C_0}\brak{u(n)+u(n+1)}
+	\end{multline}
+	
+	\item Find $H(z)$
+	
+	\solution Let $\z{y(n)} = Y(z)$
+	
+	On taking $\mathcal{Z}$-transform on both sides of the difference equation, we get,
+	\begin{multline}
+		zY(z)\brak{1 + \frac{1}{2R_1C_0} + \frac{1}{2R_2C_0}} \\= Y(z)\brak{1 - \frac{1}{2R_1C_0} - \frac{1}{2R_2C_0}} \\+ \frac{1}{R_2C_0} \brak{\frac{1}{1-z^{-1}} + \frac{z}{1-z^{-1}}}
+	\end{multline}
+	\begin{multline}
+		Y(z)\brak{z + \frac{z}{2R_1C_0} + \frac{z}{2R_2C_0} - 1 + \frac{1}{2R_1C_0} + \frac{1}{2R_2C_0}} \\
+		= \frac{1}{R_2C_0} \frac{1+z}{1-z^{-1}}
+	\end{multline}
+	Here, since $v_2(t) = 2 \forall t \ge 0\\$ \\
+	Initial voltage is given as,
+	\begin{align}
+		\implies x(n) &= 2u(n) \\
+		\implies X(z) &= \frac{2}{1-z^{-1}} &&\abs{z} > 1
+	\end{align}
+	Thus, the transfer function in $z$-domain is
+	\begin{align}
+		H(z) &= \frac{Y(z)}{X(z)} \\
+		&= \frac{\frac{1+z}{2R_2C_0}}{z + \frac{z}{2R_1C_0} + \frac{z}{2R_2C_0} - 1 + \frac{1}{2R_1C_0} + \frac{1}{2R_2C_0}} \\
+		&= \frac{\frac{1 + z^{-1}}{2R_2C_0}}{1 + \frac{1}{2R_1C_0} + \frac{1}{2R_2C_0} - z^{-1} + \frac{z^{-1}}{2R_1C_0} + \frac{z^{-1}}{2R_2C_0}}
+	\end{align}
+	Substituting the values of $R_1$,$R_2$ and $C_0$, we get,
+	\begin{align}
+		\label{eq:4.5}
+		H(z) &= \frac{2.5\times10^5 (1+z^{-1})}{7.5\times10^5 + 1 + (7.5\times10^5 - 1)z^{-1}}
+	\end{align}
+Where, ROC of $H(z)$ is,
+	\begin{align}
+		\abs{z} &> 1 \cap \abs{z}>\abs{\frac{7.5\times10^5 - 1}{7.5\times10^5 + 1}} \\
+		\implies \abs{z} &> 1
+	\end{align}
+
+	\item How can you obtain $H(z)$ from $H(s)$?
+	
+	\solution The $Z$-transform can be obtained from the Laplace transform by the substitution
+	\begin{align}
+		s &= \frac{2}{T} \frac{1-z^{-1}}{1+z^{-1}}
+	\end{align}
+	where $T$ is the sampling time period, used in the trapezoidal rule. Here, its value is $1$. This known as the bilinear transform.\\
+	From \eqref{eq:trap}, we have,
+	\begin{align}
+		H(z) &= \frac{\frac{1}{R_2C_0}}{2\frac{1-z^{-1}}{1+z^{-1}} + \frac{1}{R_1C_0} + \frac{1}{R_2C_0}} \\
+		&= \frac{\frac{1 + z^{-1}}{2R_2C_0}}{1-z^{-1}	 + \brak{\frac{1}{2R_1C_0} + \frac{1}{2R_2C_0}}(1 + z^{-1})} \\
+		&= \frac{\frac{1 + z^{-1}}{2R_2C_0}}{1 + \frac{1}{2R_1C_0} + \frac{1}{2R_2C_0} - z^{-1} + \frac{z^{-1}}{2R_1C_0} + \frac{z^{-1}}{2R_2C_0}} \\
+		\label{eq:4.6}
+		&= \frac{2.5\times10^5 (1+z^{-1})}{7.5\times10^5 + 1 + (7.5\times10^5 - 1)z^{-1}}
+	\end{align}
+Here, this result obtained in the equation \eqref{eq:4.6} is same as the result we obtained in \eqref{eq:4.5}
 \end{enumerate}
 
 \end{document}
