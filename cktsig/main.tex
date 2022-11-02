@@ -439,8 +439,22 @@ Here we have $q(0)=0$, since initially the capacitor is uncharged.
 		\implies H(s)&=\frac{5 \times 10^5}{s + 1.5 \times 10^6}
 	\end{align}
 
-	\item Plot $H(s)$.  What kind of filter is it?
-	
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./figs/4.2.png}
+	\caption{ngspice plot of $H(t)$}
+	\label{fig-4.2}
+\end{figure}
+The following python code plots the figure \ref{fig-4.2}
+\begin{lstlisting}
+	wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/4.2.py
+\end{lstlisting}
+%Applying inverse Laplace transform to equation \eqref{eq:Hs}, we get,
+%\begin{align}
+%H(t)=5\times 10^{5} e^{-1.5\times 10^{6}}
+%H(t)=\frac{1}{3} \frac{(1 - (1 - 7.5 10^5 t )}{(1 + 7.5 10^{5} t)}^{10^{7}n}	
+%\end{align}
+	\item Plot $H(s)$.  What kind of filter is it?\\
 	\solution THe below python code plots the Figure \ref{fig-4.3}
 	\begin{lstlisting}
 	wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/4.3.py
@@ -451,7 +465,6 @@ Here we have $q(0)=0$, since initially the capacitor is uncharged.
 		\caption{Plot of $H(s)$}
 		\label{fig-4.3}	
 	\end{figure}
-	
 	Considering the frequency-domain transfer function ($H(s=e^{j\omega})$), from \eqref{eq:Hs},we get
 	\begin{align}
 		\label{eq:Hw}
@@ -463,7 +476,6 @@ Clearly from \eqref{eq:Hw}, as $\omega$ increases, $H(s=j\omega)$ decreases(inve
 	\begin{align}
 		y(n) = y(t)\vert_{t=n}
 	\end{align}
-	
 	\solution
 	In the equation \eqref{eq:diff.4.1}, we have
 	\begin{align}
@@ -498,7 +510,7 @@ Hence,
 		\implies y(n+1) \brak{1 + \frac{1}{2R_1C_0} + \frac{1}{2R_2C_0}} \\= y(n) \brak{1 - \frac{1}{2R_1C_0} - \frac{1}{2R_2C_0}} \\+ \frac{1}{R_2C_0}\brak{u(n)+u(n+1)}
 	\end{multline}
 	
-	\item Find $H(z)$
+	\item Find $H(z)$\\
 	
 	\solution Let $\z{y(n)} = Y(z)$
 	
@@ -549,6 +561,76 @@ Where, ROC of $H(z)$ is,
 		&= \frac{2.5\times10^5 (1+z^{-1})}{7.5\times10^5 + 1 + (7.5\times10^5 - 1)z^{-1}}
 	\end{align}
 Here, this result obtained in the equation \eqref{eq:4.6} is same as the result we obtained in \eqref{eq:4.5}
+
+\item Find $y(n)$ from $H(z)$ and verify whether $y(n) = y(t)|_{t=n}$\\
+\solution 
+We know that, 
+\begin{align}
+	Y(z) &= H(z)X(z) \\
+	&= \brak{\frac{2.5\times10^5 (1+z^{-1})}{7.5\times10^5 + 1 + (7.5\times10^5 - 1)z^{-1}}} \frac{2}{1-z^{-1}} \\
+	\label{eq:4.7}
+	&= \frac{\frac{2}{3}}{1-z^{-1}} -\frac{\frac{2}{3}}{7.5\times10^5 + 1 + (7.5\times10^5 - 1)z^{-1}}
+\end{align}
+Let ROC be $\abs{z}>1$, we know that,
+\begin{align}
+	\frac{1}{1-z^{-1}} &\system{Z} u(n)\\
+	\frac{1}{1-a z^{-1}} &\system{Z} a^{n} u(n)
+\end{align}
+Applying inverse $\mathcal{Z}$ to the equation \eqref{eq:4.7}, we get 
+\begin{align}
+	y(n) &= \frac{2}{3}u(n) - \frac{2}{3}\frac{1}{7.5\times10^5 + 1}\brak{-\frac{7.5\times10^5 - 1}{7.5\times10^5 + 1}}^nu(n) \\
+\label{eq:4.7.1}
+	&= \frac{2}{3} \brak{1 - \frac{(1-7.5\times10^5)^n}{(1+7.5\times10^5)^{n+1}}}u(n)
+\end{align}
+%If we are sampling the signal at intervals of $T \ll 10^{-5}$, say $\SI[parse-numbers=false]{10^{-7}}{\second}$, i.e., $n = 10^{-7}, 2\times10^{-7},\ldots$
+Applying binomial theorem to the equation \eqref{eq:4.7.1}, ($(1+x)^{n} \approx 1+nx$ for $x \ll 1$), we get,
+\begin{align}
+	\label{eq:4.7.3}
+	y(n) &\approx \frac{2}{3} \brak{1 - \frac{1-7.5\times10^5n}{1+7.5\times10^5n}}u(n)
+\end{align}
+Now, consider $Y(s)$, 
+\begin{align}
+	Y(s) &= H(s)X(s) \\
+	&= \frac{5\times10^5}{s+1.5\times10^6} \frac{2}{s} \\
+	\label{eq:4.7.2}
+	&= \frac{10^6}{1.5\times10^6} \brak{\frac{1}{s} - \frac{1}{s+1.5\times10^6}}
+\end{align}
+We know that ,
+Let ROC be $\abs{z}>1$, we know that,
+\begin{align}
+	\frac{1}{s} &\system{L} 1 \quad  \Re(s)>0\\
+	\frac{1}{s+a} &\system{L} e^{-at} \quad \Re(s)>-a
+\end{align}
+Consider ROC as $\Re(s)>0$, applying inverse laplace transform to the equation \eqref{eq:4.7.2}, we get,  
+\begin{align}
+	y(t) = \frac{2}{3}\brak{1 - e^{-1.5\times10^6t}}u(t)
+\end{align}
+But for $t \ll 10^-6$, we have
+\begin{align}
+	e^{-1.5\times 10^6 t} &= \frac{e^{-0.75 \times 10^6 t}}{e^{0.75 \times 10^6 t}} \\
+	&\approx \frac{1-7.5\times10^5t}{1+7.5\times10^5t}  
+\end{align}
+Therefore
+\begin{align}
+	\label{eq:4.7.4}
+	y(t) &\approx \frac{2}{3} \brak{1 - \frac{1-7.5\times10^5t}{1+7.5\times10^5t}} u(t) 
+\end{align}
+From equations \eqref{eq:4.7.3} and \eqref{eq:4.7.4}, we have,
+\begin{align}
+	\therefore y(n) &= y(t)|_{t=n}
+\end{align}
+Hence verified.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{./figs/4.7.png}
+	\caption{Plot of $y(t)$,$y(n)$ and ngspice}
+	\label{fig:4.7}	
+\end{figure}
+The following python plots the graph \ref{fig:4.7} of $V_C(t)$.
+\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/tree/main/cktsig/codes/4.7.py
+\end{lstlisting}
+
 \end{enumerate}
 
 \end{document}

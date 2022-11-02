@@ -18,7 +18,7 @@ myticks=['-a']
 plt.xticks(x,myticks)
 plt.yticks()
 plt.title('ROC')
-#plt.savefig('../figs/2.5.png')
+plt.savefig('../figs/2.5.png')
 #plt.savefig('Circuits/figs/2.5.eps')
 #plt.savefig('Circuits/figs/2.5.pdf')
 plt.show()

@@ -1,0 +1,15 @@
+#4.2
+
+r1 1 0 1
+r2 1 2 2
+c1 1 0 1u ic=0
+v1 2 0 2
+.tran 100u 10u uic
+.control
+set filetype=ascii
+run
+#plot v(1)
+wrdata 4.2.dat v(1)/2
+.endc
+
+.end

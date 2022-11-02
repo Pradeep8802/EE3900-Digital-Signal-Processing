@@ -1,9 +1,9 @@
-PWD /home/pradeep/Desktop/EE3900/cktsig/EE3900-Linear-Systems-and-Signal-Processing-main/Circuits
+PWD /home/pradeep/Desktop/cktsig
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/pradeep/Desktop/EE3900/cktsig/EE3900-Linear-Systems-and-Signal-Processing-main/Circuits/main.tex
+INPUT /home/pradeep/Desktop/cktsig/main.tex
 OUTPUT main.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/ieeetran/IEEEtran.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/ieeetran/IEEEtran.cls
@@ -995,13 +995,14 @@ INPUT ./main.out
 INPUT main.out
 INPUT ./main.out
 INPUT main.out
+OUTPUT main.pdf
 INPUT ./main.out
 INPUT ./main.out
 OUTPUT main.out
-OUTPUT main.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txsc.tfm
 INPUT ./main.toc
+INPUT main.toc
 INPUT main.toc
 OUTPUT main.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txmi.tfm
@@ -1084,14 +1085,14 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txr.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txb.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmb.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxb.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txr.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txsc.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxsc.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txb.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmb.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxb.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxmi.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmri.tfm
@@ -1101,19 +1102,17 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmri.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txr.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txb.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmb.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxb.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/tcxr.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtcxr.tfm
-INPUT ./figs/2.4.pdf
-INPUT figs/2.4.pdf
-INPUT ./figs/2.4.pdf
-INPUT ./figs/2.4.pdf
-INPUT ./figs/2.5.pdf
-INPUT figs/2.5.pdf
-INPUT ./figs/2.5.pdf
-INPUT ./figs/2.5.pdf
+INPUT ./figs/2.4.png
+INPUT figs/2.4.png
+INPUT ./figs/2.4.png
+INPUT ./figs/2.4.png
+INPUT ./figs/2.5.png
+INPUT ./figs/2.5.png
+INPUT figs/2.5.png
+INPUT ./figs/2.5.png
+INPUT ./figs/2.5.png
 INPUT ./figs/lap-ckt.jpg
 INPUT ./figs/lap-ckt.jpg
 INPUT figs/lap-ckt.jpg
@@ -1122,10 +1121,11 @@ INPUT ./figs/lap-ckt.jpg
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txr.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
-INPUT ./figs/2.7.pdf
-INPUT figs/2.7.pdf
-INPUT ./figs/2.7.pdf
-INPUT ./figs/2.7.pdf
+INPUT ./figs/2.7.png
+INPUT ./figs/2.7.png
+INPUT figs/2.7.png
+INPUT ./figs/2.7.png
+INPUT ./figs/2.7.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txmi.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txmi.tfm
@@ -1151,20 +1151,11 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txbsy.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txbsy.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txbex.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txbex.tfm
-INPUT ./figs/2.8.eps
-INPUT figs/2.8.eps
-INPUT ./figs/2.8.eps
-INPUT ./figs/2.8.eps
-INPUT ./figs/2.8-eps-converted-to.pdf
-INPUT ./figs/2.8-eps-converted-to.pdf
-INPUT ./figs/2.8.eps
-INPUT ./figs/2.8-eps-converted-to.pdf
-INPUT ./figs/2.8-eps-converted-to.pdf
-INPUT ./figs/2.8-eps-converted-to.pdf
-INPUT ./Tikz Circuits/3.2.tex
-INPUT Tikz Circuits/3.2.tex
-INPUT ./Tikz Circuits/3.2.tex
-INPUT Tikz Circuits/3.2.tex
+INPUT ./figs/2.8.png
+INPUT ./figs/2.8.png
+INPUT figs/2.8.png
+INPUT ./figs/2.8.png
+INPUT ./figs/2.8.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxmi.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmri.tfm
@@ -1174,20 +1165,39 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmri.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txr.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
-INPUT ./figs/3.4.pdf
-INPUT figs/3.4.pdf
-INPUT ./figs/3.4.pdf
-INPUT ./figs/3.4.pdf
-INPUT ./figs/3.5.eps
-INPUT figs/3.5.eps
-INPUT ./figs/3.5.eps
-INPUT ./figs/3.5.eps
-INPUT ./figs/3.5-eps-converted-to.pdf
-INPUT ./figs/3.5-eps-converted-to.pdf
-INPUT ./figs/3.5.eps
-INPUT ./figs/3.5-eps-converted-to.pdf
-INPUT ./figs/3.5-eps-converted-to.pdf
-INPUT ./figs/3.5-eps-converted-to.pdf
+INPUT ./Tikz Circuits/3.2.tex
+INPUT Tikz Circuits/3.2.tex
+INPUT ./Tikz Circuits/3.2.tex
+INPUT Tikz Circuits/3.2.tex
+INPUT ./figs/3.4.png
+INPUT ./figs/3.4.png
+INPUT figs/3.4.png
+INPUT ./figs/3.4.png
+INPUT ./figs/3.4.png
+INPUT ./figs/3.5.png
+INPUT ./figs/3.5.png
+INPUT figs/3.5.png
+INPUT ./figs/3.5.png
+INPUT ./figs/3.5.png
+INPUT ./Tikz Circuits/4.1.tex
+INPUT Tikz Circuits/4.1.tex
+INPUT ./Tikz Circuits/4.1.tex
+INPUT Tikz Circuits/4.1.tex
+INPUT ./figs/4.2.png
+INPUT ./figs/4.2.png
+INPUT ./figs/4.2.png
+INPUT ./figs/4.2.png
+INPUT ./figs/4.2.png
+INPUT ./figs/4.3.png
+INPUT ./figs/4.3.png
+INPUT ./figs/4.3.png
+INPUT ./figs/4.3.png
+INPUT ./figs/4.3.png
+INPUT ./figs/4.7.png
+INPUT ./figs/4.7.png
+INPUT ./figs/4.7.png
+INPUT ./figs/4.7.png
+INPUT ./figs/4.7.png
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
@@ -1198,6 +1208,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxsc.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txex.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
