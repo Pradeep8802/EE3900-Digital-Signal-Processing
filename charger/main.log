@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.3)  27 OCT 2022 07:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.3)  6 NOV 2022 23:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1298,7 +1298,7 @@ LaTeX Font Info:    Trying to load font information for TS1+txr on input line 1
 (/usr/share/texlive/texmf-dist/tex/latex/txfonts/ts1txr.fd
 File: ts1txr.fd 2000/12/15 v3.1
 )
-<./figs/1.1.png, id=22, 462.528pt x 346.896pt>
+<./figs/1.1.png, id=32, 462.528pt x 346.896pt>
 File: ./figs/1.1.png Graphic file (type png)
 <use ./figs/1.1.png>
 Package pdftex.def Info: ./figs/1.1.png  used on input line 121.
@@ -1328,7 +1328,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 232--234
 
  []
 
-<./figs/2.3.png, id=95, 462.528pt x 346.896pt>
+<./figs/2.3.png, id=105, 462.528pt x 346.896pt>
 File: ./figs/2.3.png Graphic file (type png)
 <use ./figs/2.3.png>
 Package pdftex.def Info: ./figs/2.3.png  used on input line 259.
@@ -1343,7 +1343,7 @@ Overfull \hbox (7.03537pt too wide) detected at line 310
 []
  []
 
-<./figs/2.6.png, id=138, 462.528pt x 346.896pt>
+<./figs/2.6.png, id=148, 462.528pt x 346.896pt>
 File: ./figs/2.6.png Graphic file (type png)
 <use ./figs/2.6.png>
 Package pdftex.def Info: ./figs/2.6.png  used on input line 339.
@@ -1389,202 +1389,237 @@ Underfull \vbox (badness 7238) has occurred while \output is active []
 
  [4 <./figs/2.6.png>]
 
-LaTeX Warning: Command \j invalid in math mode on input line 392.
+LaTeX Warning: Command \j invalid in math mode on input line 393.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 392.
+LaTeX Warning: Command \j invalid in math mode on input line 393.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 396.
+LaTeX Warning: Command \j invalid in math mode on input line 397.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 396.
+LaTeX Warning: Command \j invalid in math mode on input line 397.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 401.
+LaTeX Warning: Command \j invalid in math mode on input line 402.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 401.
+LaTeX Warning: Command \j invalid in math mode on input line 402.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 406.
+LaTeX Warning: Command \j invalid in math mode on input line 407.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 406.
+LaTeX Warning: Command \j invalid in math mode on input line 407.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 427.
+LaTeX Warning: Command \j invalid in math mode on input line 428.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 427.
+LaTeX Warning: Command \j invalid in math mode on input line 428.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 427.
+LaTeX Warning: Command \j invalid in math mode on input line 428.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 427.
+LaTeX Warning: Command \j invalid in math mode on input line 428.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 443.
+LaTeX Warning: Command \j invalid in math mode on input line 444.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 443.
+LaTeX Warning: Command \j invalid in math mode on input line 444.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 443.
+LaTeX Warning: Command \j invalid in math mode on input line 444.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 443.
+LaTeX Warning: Command \j invalid in math mode on input line 444.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 448.
+LaTeX Warning: Command \j invalid in math mode on input line 449.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 448.
+LaTeX Warning: Command \j invalid in math mode on input line 449.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 463.
+LaTeX Warning: Command \j invalid in math mode on input line 464.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 463.
+LaTeX Warning: Command \j invalid in math mode on input line 464.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 463.
+LaTeX Warning: Command \j invalid in math mode on input line 464.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 463.
+LaTeX Warning: Command \j invalid in math mode on input line 464.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 470.
+LaTeX Warning: Command \j invalid in math mode on input line 471.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 470.
+LaTeX Warning: Command \j invalid in math mode on input line 471.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 476.
+LaTeX Warning: Command \j invalid in math mode on input line 477.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 476.
+LaTeX Warning: Command \j invalid in math mode on input line 477.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 476.
+LaTeX Warning: Command \j invalid in math mode on input line 477.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 476.
+LaTeX Warning: Command \j invalid in math mode on input line 477.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 486.
+LaTeX Warning: Command \j invalid in math mode on input line 487.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-
-LaTeX Warning: Reference `eq:ck-xt' on page 6 undefined on input line 501.
-
-LaTeX Font Info:    Trying to load font information for OT1+txtt on input line 
-507.
-(/usr/share/texlive/texmf-dist/tex/latex/txfonts/ot1txtt.fd
-File: ot1txtt.fd 2000/12/15 v3.1
-)
-Underfull \hbox (badness 3199) in paragraph at lines 506--513
-\OT1/txr/m/n/12 The python code \OT1/txtt/m/n/12 codes/3[]8.py \OT1/txr/m/n/12 
-ver-i-fies
- []
+<figs/3.8.png, id=232, 462.528pt x 346.896pt>
+File: figs/3.8.png Graphic file (type png)
+<use figs/3.8.png>
+Package pdftex.def Info: figs/3.8.png  used on input line 508.
+(pdftex.def)             Requested size: 252.0pt x 189.00427pt.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
 
 
-LaTeX Warning: Command \j invalid in math mode on input line 524.
+LaTeX Warning: Command \j invalid in math mode on input line 539.
+
+<figs/3.9.png, id=233, 462.528pt x 346.896pt>
+File: figs/3.9.png Graphic file (type png)
+<use figs/3.9.png>
+Package pdftex.def Info: figs/3.9.png  used on input line 541.
+(pdftex.def)             Requested size: 252.0pt x 189.00427pt.
+<figs/3.10.png, id=236, 462.528pt x 346.896pt>
+File: figs/3.10.png Graphic file (type png)
+<use figs/3.10.png>
+Package pdftex.def Info: figs/3.10.png  used on input line 558.
+(pdftex.def)             Requested size: 252.0pt x 189.00427pt.
+[6 <./figs/3.8.png> <./figs/3.9.png>]
+
+LaTeX Warning: Command \j invalid in math mode on input line 606.
 
 
-LaTeX Warning: Reference `eq:duality' on page 6 undefined on input line 532.
+LaTeX Warning: Command \j invalid in math mode on input line 606.
 
 
-Underfull \hbox (badness 3199) in paragraph at lines 524--533
-\OT1/txr/m/n/12 The python code \OT1/txtt/m/n/12 codes/3[]9.py \OT1/txr/m/n/12 
-ver-i-fies
- []
+LaTeX Warning: Command \j invalid in math mode on input line 606.
 
-[6
 
-] (./main.aux)
+LaTeX Warning: Command \j invalid in math mode on input line 606.
+
+
+Underfull \vbox (badness 6927) has occurred while \output is active []
+
+<figs/4.3.png, id=270, 462.528pt x 346.896pt>
+File: figs/4.3.png Graphic file (type png)
+<use figs/4.3.png>
+Package pdftex.def Info: figs/4.3.png  used on input line 637.
+(pdftex.def)             Requested size: 252.0pt x 189.00427pt.
+
+
+LaTeX Warning: Reference `fig:4.3' on page 7 undefined on input line 641.
+
+[7 <./figs/3.10.png> <./figs/4.3.png>]
+Underfull \vbox (badness 2435) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+<figs/5.3.png, id=345, 462.528pt x 346.896pt>
+File: figs/5.3.png Graphic file (type png)
+<use figs/5.3.png>
+Package pdftex.def Info: figs/5.3.png  used on input line 780.
+(pdftex.def)             Requested size: 252.0pt x 189.00427pt.
+<figs/5.4.png, id=348, 462.528pt x 346.896pt>
+File: figs/5.4.png Graphic file (type png)
+<use figs/5.4.png>
+Package pdftex.def Info: figs/5.4.png  used on input line 813.
+(pdftex.def)             Requested size: 252.0pt x 189.00427pt.
+
+[9 <./figs/5.3.png> <./figs/5.4.png>] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 415571BCF7C36DD65919ABDE8C07CB49;378.
+(rerunfilecheck)             Checksum: 43EED739D6F151668068F9FE9749AB82;562.
  ) 
 Here is how much of TeX's memory you used:
- 46777 strings out of 478287
- 1088297 string characters out of 5849290
- 1793490 words of memory out of 5000000
- 64209 multiletter control sequences out of 15000+600000
- 537175 words of font info for 160 fonts, out of 8000000 for 9000
+ 47616 strings out of 478287
+ 1111669 string characters out of 5849290
+ 1813491 words of memory out of 5000000
+ 64953 multiletter control sequences out of 15000+600000
+ 536899 words of font info for 159 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 100i,15n,104p,427b,1580s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 100i,16n,104p,427b,1580s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/txfonts/rtcxr.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dist/fonts/typ
@@ -1594,14 +1629,13 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/txfonts/txsyc.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/txfonts/txtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 224730 bytes).
+1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
+bi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (9 pages, 350698 bytes).
 PDF statistics:
- 336 PDF objects out of 1000 (max. 8388607)
- 291 compressed objects within 3 object streams
- 153 named destinations out of 1000 (max. 500000)
- 52 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 485 PDF objects out of 1000 (max. 8388607)
+ 425 compressed objects within 5 object streams
+ 245 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

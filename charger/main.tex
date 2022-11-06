@@ -382,6 +382,7 @@ Using \eqref{eq:fourier} in equation \eqref{eq:3.3}, we get,
 	\end{align}
 	\item Show that
 	\begin{align}
+		\label{eq:inverse}
 		G(t)&\system{F}g(-f)
 	\end{align}
 	\solution 
@@ -482,7 +483,7 @@ Hence,
 \brak{e^{\j2\pi f_0t}})+ \frac{1}{2} \mathcal{F}(e^{-\j2\pi f_0t})\\
 &=\frac{1}{2} \mathcal{F}(
 \brak{e^{\j2\pi f_0t}})+ \frac{1}{2} \mathcal{F}(e^{-\j2\pi f_0t})\\
-&=\frac{1}{2}\brak{\delta\brak{f+f_0} + \delta\brak{f-f_0}}
+&=\frac{1}{2}\brak{\delta\brak{f-f_0} + \delta\brak{f+f_0}}
 \end{align}
 %
 %	Using the linearity of the Fourier 
@@ -492,54 +493,332 @@ Hence,
 %		\brak{e^{\j2\pi f_0t} + e^{-\j2\pi f_0t}} \\
 %		&\system{F}\frac{1}{2}\brak{\delta\brak{f+f_0} + \delta\brak{f-f_0}}
 %	\end{align}
-	\item Find the Fourier Transform of $x(t)$ and plot it. Verify using python.
-	\solution As obtained earlier,from equation \eqref{eq:ck},
+	\item Find the Fourier Transform of $x(t)$ and plot it. Verify using python.\\
+	\solution As obtained earlier, from equation \eqref{eq:ck},
 	\begin{align}
-		x(t)&\system{F}\sum_{k=-\infty}^{\infty}c_k\\
-		\implies x(t)&\system{F}\sum_{k=-\infty}^{\infty}\frac{\delta{f+}}{}\\
-	\end{align} 
-	Substituting \eqref{eq:ck-xt} in \eqref{eq:one-Z-complex},
-	\begin{align}
-		x(t)&\system{F}\sum_{k=-\infty}^{\infty}c_k\delta\brak{f+kf_0} \\
-		&=\frac{2A_0}{\pi}\sum_{k=-\infty}^{\infty}\frac{\delta\brak{f+2kf_0}}{1-4k^2}
-		\label{eq:fourier-xt}
+		x(t)=\sum_{k=-\infty}^{\infty}c_k e^{j2\pi k f_0 t}\\
+		e^{j 2 \pi k f_0 t}\system{F}=\delta{f-kf_0}
 	\end{align}
-	The python code \texttt{codes/3\_8.py} verifies \eqref{eq:fourier-xt}.
-%	\begin{figure}[!ht]
-%		\includegraphics[width=\columnwidth]{figs/3_8.png}
-%		\caption{Fourier Transform of $x(t)$.}
-%		\label{eq:fig-fourier-xt}
-%	\end{figure}
+	Hence, from the value of $c_k$,
+	\begin{align}
+ x(t)&\system{F}\sum_{k=-\infty}^{\infty} \delta\brak{f+kf_0} c_k\\
+		\implies x(t)&\system{F}\sum_{k=-\infty}^{\infty} \frac{2A_0}{\pi} \frac{\delta\brak{f+2kf_0}}{1-4k^2} 
+	\end{align} 
+	\begin{figure}[!ht]
+				\includegraphics[width=\columnwidth]{figs/3.8.png}
+				\caption{Fourier Transform of $x(t)$.}
+				\label{fig:fourier-xt}
+			\end{figure}
+	Fourier transform of $x(t)$ is verified in the following figure. 
+	The figure is plotted using the below python code.
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/charger/codes/3.8.py
+	\end{lstlisting} 
+%	
 	\item Show that
 	\begin{align}
-		\rect{t} \system{F} \sinc{t}
+		\rect{t} \system{F} \sinc{f}
 	\end{align}
-	Verify using python.
-	\solution We write
+	Verify using python.\\
+	\solution We know that,
 	\begin{align}
-		\rect{t}&\system{F}\int_{-\infty}^{\infty}\rect{t}e^{-\j2\pi ft}\, dt \\
-		&=\int_{-\frac{1}{2}}^{\frac{1}{2}}e^{-\j2\pi ft}\, dt \\
-		&=\frac{e^{\j\pi f} - e^{-\j\pi f}}{\j2\pi f} = \frac{\sin{\pi f}}{\pi f} = \sinc{f}
-		\label{eq:fourier-rect}
+		rect(t)&=
+	\begin{cases}
+		0 \quad t<\frac{-1}{2}\\
+		1 \quad \frac{-1}{2}<t<\frac{1}{2}\\
+		0 \quad t>\frac{1}{2}
+	\end{cases}\\
+\sinc(f)&=\frac{\sin{\pi f}}{\pi f}
 	\end{align}
-	The python code \texttt{codes/3\_9.py} verifies \eqref{eq:fourier-rect}.
-%	\begin{figure}[!ht]
-%		\includegraphics[width=\columnwidth]{figs/3_9.png}
-%		\caption{Fourier Transform of $\rect(t)$.}
-%		\label{eq:fig-fourier-rect}
-%	\end{figure}
-%	\item $\sinc{t}\system{F} ?$  Verify using python.
-	\solution From \eqref{eq:duality}, we have 
+Applying fourier transform we get,
+	\begin{align}
+		\rect{t}&\system{F}\int_{-\infty}^{\infty}\rect{t} e^{-\j2\pi ft}\, dt \\
+		&=\int_{-\frac{1}{2}}^{\frac{1}{2}}e^{-\j 2\pi ft}\, dt \\
+		\label{eq:fourierrect}
+		&=\frac{e^{\j\pi f} - e^{-\j\pi f}}{\j2\pi f} = \frac{\sin{\pi f}}{\pi f} = \sinc{f}
+	\end{align}
+	\begin{figure}[!ht]
+	\includegraphics[width=\columnwidth]{figs/3.9.png}
+	\caption{Fourier Transform of $\rect{t})$.}
+	\label{fig:3.9}
+\end{figure}
+The below python code plots the figure \ref{fig:3.9}
+	\begin{lstlisting}
+	wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/charger/codes/3.9.py
+\end{lstlisting} 
+
+	\item $\sinc{t}\system{F} ?$  Verify using python.\\
+	\solution From \eqref{eq:3.3}, we have 
+	
 	\begin{align}
 		\sinc{t}\system{F}\rect(-f)=\rect{f}
 		\label{eq:fourier-sinc}
 	\end{align}
+\begin{figure}[!ht]
+	\includegraphics[width=\columnwidth]{figs/3.10.png}
+	\caption{Fourier Transform of $\rect{t})$.}
+	\label{fig:3.10}
+\end{figure}
 	Since $\rect{f}$ is an even function.
-	The python code \texttt{codes/3\_10.py} verifies \eqref{eq:fourier-sinc}.
+	The below python code plots the figure \ref{fig:3.10}
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/charger/codes/3.10.py
+	\end{lstlisting} 
+
+%	The python code \texttt{codes/3\_10.py} verifies \eqref{eq:fourier-sinc}
+%	by plotting Fig. \ref{fig:fourier-sinc}.
 %	\begin{figure}[!ht]
 %		\includegraphics[width=\columnwidth]{figs/3_10.png}
 %		\caption{Fourier Transform of $\sinc(t)$.}
-%		\label{eq:fig-fourier-sinc}
+%		\label{fig:fourier-sinc}
 %	\end{figure}
 \end{enumerate}
+\section{Filter}
+\begin{enumerate}[label=\thesection.\arabic*
+	,ref=\thesection.\theenumi]
+	\item Find $H(f)$ which transforms $x(t)$ to DC 5V.\\
+	\solution The function $H(f)$ is a low pass filter which filters out
+	even harmonics and leaves the zero frequency component behind.
+	The rectangular function represents an ideal low pass filter. 
+	Suppose the cutoff frequency is $f_c = 50$ Hz, then
+	\begin{align}
+		H(f) = \rect\brak{\frac{f}{2f_c}} =
+		\begin{cases}
+			1 & \abs{f} < f_c \\
+			0 & \textrm{otherwise}
+		\end{cases}
+		\label{eq:Hfb}
+	\end{align}
+	Multiplying by a scaling factor to get DC 5V,
+	\begin{align}
+		\label{eq:Hfa}
+		H(f) = \frac{\pi V_0}{2A_0}\rect{\brak{\frac{f}{2f_c}}}
+	\end{align}
+	where $V_0 = 5$ V.
+	\item Find $h(t)$.\\
+	\solution Suppose $g(t)\system{F}G(f)$. Then, for some
+	nonzero $a \in \mathbb{R}$, let $u=at$,
+	\begin{align}
+		g(at)&\system{F}\int_{-\infty}^{\infty}g(at)e^{-\j2\pi ft}\, dt \\
+		&=\frac{1}{a}\int_{-\infty}^{\infty}g(u)e^{\brak{-\j2\pi \frac{f}{a}t}}\, dt \\
+		\label{eq:Fscaling}
+		&=\frac{1}{a}G\brak{\frac{f}{a}}
+	\end{align}
+Using \eqref{eq:Fscaling}, from \eqref{eq:Hfa},
+\begin{align}
+	h(t)&\system{F} \frac{\pi V_0}{2A_0}\rect{\brak{\frac{f}{2f_c}}}\\
+	h(t)&\system{F} \frac{\pi V_0 2f_c}{2A_0}  \frac{1}{2f_c}\rect{\brak{\frac{f}{2f_c}}}\\
+	h(t)&\system{F} \frac{2 \pi f_c V_0}{A_0}\rect{\brak{\frac{f}{2f_c}}}\\
+	h(t) &= \frac{2\pi V_0}{A_0}f_c\sinc\brak{2f_ct}
+	\end{align}
+	\item Verify your result using convolution.\\
+	\solution 
+	Fourier transform of $x(t)$ and $h(t)$ respectively is
+	\begin{align}
+		X(f)&=\sum_{k=-\infty}^{\infty} \frac{2A_0}{\pi} \frac{\delta\brak{f+2kf_0}}{1-4k^2}\\
+		H(f)&=\frac{\pi V_0}{2A_0}\rect{\brak{\frac{f}{2f_c}}}\\
+		X(f) \times H(f)&=\sum_{k=-\infty}^{\infty} V_0 \frac{\delta\brak{f+2kf_0}}{1-4k^2} \times \rect{\brak{\frac{f}{2f_c}}}\\
+		X(f)\times H(f)&=\sum_{k=0}^{0} V_0 \frac{\delta\brak{f+2kf_0}}{1-4k^2}
+	\end{align} 
+%for $\rect{\brak{\frac{f}{2f_c}}$ to be non-zero, $-f_c \leq f \leq f_c$, and for  $\delta\brak{f+2kf_0}$ to be non-zero, f must be an even multiple of $f_0$. Hence $k=0$ is the only value tof $k$ for which $X(f) H(f)$ is non-zero.
+	Hence,
+	\begin{align}
+		X(f)\times H(f)&=V_0 \frac{\delta\brak{f}}{1-4 \times 0}\\
+		X(f)\times H(f)&=V_0 \delta\brak{f}
+	\end{align} 
+Since $1\system{F} \delta\brak{0}$,
+Hence, 
+\begin{align}
+V_0 \delta\brak{t} \system{F}^{-1} V_0\times 1	\\
+\implies H(t) \circledast x(t)=V_0
+\end{align}
+Hence verified.
+	\begin{figure}[!ht]
+			\includegraphics[width=\columnwidth]{figs/4.3.png}
+			\caption{Convolution of the $x(t)$ and $h(t)$.}
+			\label{eq:fig:4.3}
+		\end{figure}
+The following python code plots the figure \ref{fig:4.3}
+\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/charger/codes/4.3.py
+\end{lstlisting} 
+\end{enumerate}
+\section{Filter Design}
+\begin{enumerate}[label=\thesection.\arabic*
+	,ref=\thesection.\theenumi]
+	\item Design a Butterworth filter for $H(f)$.\\
+	\solution The Butterworth filter has an amplitude response
+	given by
+	\begin{align}
+		\abs{H\brak{f}}^2 = \frac{1}{\brak{1 + \brak{\frac{f}{f_c}}^{2n}}}
+	\end{align}
+	where $n$ is the order of the filter and $f_c$ is the cutoff
+	frequency. The attenuation at frequency $f$ is given by 
+	\begin{align}
+		A &= -10\log_{10}\abs{H\brak{f}}^2 \\
+		&= -20\log_{10}\abs{H\brak{f}}
+		\label{eq:loss}
+	\end{align}
+	We consider the following design parameters for our
+	lowpass analog Butterworth filter:
+	\begin{enumerate}
+		\item Passband edge, $f_p = 50$ Hz
+		\item Stopband edge, $f_s = 100$ Hz
+		\item Passband attenuation, $A_p = -1$ dB
+		\item Stopband attenuation, $A_s = -20$ dB
+	\end{enumerate}
+	We are required to find a desriable order $n$ and cutoff
+	frequency $f_c$ for the filter. From \eqref{eq:loss},
+	\begin{align}
+		A_p &= -10\log_{10}\sbrak{1 + \brak{\frac{f_p}{f_c}}^{2n}} \\
+		A_s &= -10\log_{10}\sbrak{1 + \brak{\frac{f_s}{f_c}}^{2n}}
+	\end{align}
+	Thus,
+	\begin{align}
+		\brak{\frac{f_p}{f_c}}^{2n} = 10^{-\frac{A_p}{10}} - 1 \label{eq:fc1} \\
+		\brak{\frac{f_s}{f_c}}^{2n} = 10^{-\frac{A_s}{10}} - 1 \label{eq:fc2}
+	\end{align}
+	Therefore, on dividing the above equations and solving for $n$,
+	\begin{align}
+		n = \frac{\log\brak{10^{-\frac{A_s}{10}} - 1} - 
+			\log\brak{10^{-\frac{A_p}{10}} - 1}}{2\brak{\log{f_s} - \log{f_p}}}
+	\end{align}
+	In this case, making appropriate susbstitutions gives $n = 4.29$.
+	Hence, we take $n = 5$. Solving for $f_c$ in \eqref{eq:fc1} and
+	\eqref{eq:fc2},
+	\begin{align}
+		f_{c1} = f_p\sbrak{10^{-\frac{A_p}{10}} - 1}^{-\frac{1}{2n}} = \SI[parse-numbers=false]{57.23}{\hertz} \\
+		f_{c2} = f_s\sbrak{10^{-\frac{A_s}{10}} - 1}^{-\frac{1}{2n}} = \SI[parse-numbers=false]{63.16}{\hertz}
+	\end{align}
+	Hence, we take $f_c = \sqrt{f_{c1}f_{c2}} = \SI[parse-numbers=false]{60}{\hertz}$ approximately.
+	\item Design a Chebyshev filter for $H(f)$.bjjk,bv,kgg
+	\solution The Chebyshev filter has an amplitude response
+	given by
+	\begin{align}
+		\abs{H\brak{f}}^2 = \frac{1}{\brak{1 + \epsilon^2C_n^2\brak{\frac{f}{f_c}}}}
+	\end{align}
+	where 
+	\begin{enumerate}
+		\item $n$ is the order of the filter
+		\item $\epsilon$ is the ripple
+		\item $f_c$ is the cutoff frequency 
+		\item $C_n = \cosh^{-1}\brak{n\cosh{x}}$ denotes 
+		the n\textsuperscript{th} order Chebyshev polynomial,
+		given by
+		\begin{align}
+			c_n(x) =
+			\begin{cases}
+				\cos\brak{n\cos^{-1}x} & \abs{x} \le 1 \\
+				\cosh\brak{n\cosh^{-1}x} & \textrm{otherwise}
+			\end{cases}
+			\label{eq:chebypol}
+		\end{align}
+	\end{enumerate}
+	We are given the following specifications:
+	\begin{enumerate}
+		\item Passband edge (which is equal to 
+		cutoff frequency), $f_p = f_c$
+		\item Stopband edge, $f_s$
+		\item Attenuation at stopband edge, $A_s$
+		\item Peak-to-peak ripple $\delta$ in the passband.
+		It is given in dB and is related to $\epsilon$ as
+		\begin{align}
+			\delta = 10\log_{10}\brak{1 + \epsilon^2}
+			\label{eq:delta-eps}
+		\end{align}
+	\end{enumerate}
+	and we must find a suitable $n$ and $\epsilon$. From
+	\eqref{eq:delta-eps},
+	\begin{align}
+		\epsilon = \sqrt{10^{\frac{\delta}{10}} - 1}
+		\label{eq:epsilon-del}
+	\end{align}
+	At $f_s > f_p = f_c$, using \eqref{eq:chebypol}, $A_s$ is given by
+	\begin{align}
+		A_s = -10\log_{10}\sbrak{1 + \epsilon^2c_n^2\brak{\frac{f_s}{f_p}}} \\
+		\implies c_n\brak{\frac{f_s}{f_p}} = \frac{\sqrt{10^{-\frac{A_s}{10}} - 1}}{\epsilon} \\
+		\implies n = \frac{\cosh^{-1}\brak{\frac{\sqrt{10^{-\frac{A_s}{10}} - 1}}{\epsilon}}}
+		{\cosh^{-1}\brak{\frac{f_s}{f_p}}}
+	\end{align}
+	We consider the following specifications:
+	\begin{enumerate}
+		\item Passband edge/cutoff frequency, $f_p = f_c = \SI[parse-numbers=false]{60}{\hertz}$.
+		\item Stopband edge, $f_s = \SI[parse-numbers=false]{100}{\hertz}$.
+		\item Passband ripple, $\delta = \SI[parse-numbers=false]{0.5}{\dB}$
+		\item Stopband attenuation, $A_s = \SI[parse-numbers=false]{-20}{\dB}$
+	\end{enumerate}
+	$\epsilon = 0.35$ and $n = 3.68$. Hence, we take $n = 4$
+	as the order of the Chebyshev filter.
+	\item Design a circuit for your Butterworth filter.
+	\solution Looking at the table of normalized element values
+	$L_k$, $C_k$, of the Butterworth filter for order 5, and noting
+	that de-normalized values $L_k'$ and $C_k'$ are given by
+	\begin{align}
+		C_k' = \frac{C_k}{\omega_c} \qquad L_k' = \frac{L_k}{\omega_c}
+	\end{align}
+	De-normalizing these values, taking $f_c = 60$ Hz,
+	\begin{align}
+		C_1' = C_5' = \SI{1.64}{\milli\farad} \\
+		L_2' = L_4' = \SI{4.29}{\milli\henry} \\
+		C_3' = \SI{5.31}{\milli\farad}
+	\end{align}
+	The L-C network is shown in Fig. \ref{fig:butter-filter}.
+	\begin{figure}[!ht]
+		\centering
+		\begin{circuitikz} 
+			\draw (0,0) to[short, o-o] (7,0);
+			\draw (0,2) to [short, o-] (1,2) to [L, l=4.29 mH] (3.5,2) to [L, l=4.29 mH] (6,2) to[short, -o] (7,2);
+			\draw (1,0) to[C, l=1.64 mF] (1,2);
+			\draw (3.5,0) to[C, l=5.31 mF] (3.5,2);
+			\draw (6,0) to[C, l=1.64 mF] (6,2);
+		\end{circuitikz}
+		\caption{L-C Butterworth Filter}
+		\label{fig:butter-filter}
+	\end{figure}
+	
+	\begin{figure}
+		\includegraphics[width=\columnwidth]{figs/5.3.png}
+		\caption{Simulation of Chebyshev filter.}
+		\label{fig:sim-butter}
+	\end{figure}
+	Below python code plot the figure \ref{fig:sim-butter}
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/charger/codes/5.3.py
+	\end{lstlisting} 
+
+	\item Design a circuit for your Chebyshev filter.
+	
+	\solution Looking at the table of normalized element values
+	of the Chebyshev filter for order 3 and 0.5 dB ripple,
+	and de-nomrmalizing those values, taking $f_c = \SI[parse-numbers=false]{50}{\hertz}$,
+	\begin{align}
+		C_1' = \SI{4.43}{\milli\farad} \\
+		L_2' = \SI{3.16}{\milli\henry} \\
+		C_3' = \SI{6.28}{\milli\farad} \\
+		L_4' = \SI{2.23}{\milli\henry}
+	\end{align}
+	The L-C network is shown in Fig. \ref{fig:cheby-filter}.
+	\begin{figure}[!ht]
+		\centering
+		\begin{circuitikz} 
+			\draw (0,0) to[short, o-o] (7,0); 
+			\draw (1,0) to[C, l=4.43 mF] (1,2);
+			\draw (3.5,0) to[C, l=6.28 mF] (3.5,2);
+			\draw (0,2) to [short, o-] (1,2) to [L, l=3.16 mH] (3.5,2) to[L, l=2.23 mH] (6,2) to[short, -o] (7,2);
+		\end{circuitikz}
+		\caption{L-C Chebyshev Filter}
+		\label{fig:cheby-filter}
+	\end{figure}
+	\begin{figure}
+	\includegraphics[width=\columnwidth]{figs/5.4.png}
+	\caption{Simulation of Chebyshev filter.}
+	\label{fig:sim-cheby}
+\end{figure}
+	Below python code plot the figure \ref{fig:sim-cheby}
+	\begin{lstlisting}
+wget https://github.com/Pradeep8802/EE3900-Digital-Signal-Processing/blob/main/charger/codes/5.4.py
+	\end{lstlisting} 
+\end{enumerate}
+
+
     \end{document}
