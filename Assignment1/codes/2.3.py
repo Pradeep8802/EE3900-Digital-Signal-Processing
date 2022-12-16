@@ -1,4 +1,4 @@
-mport soundfile as sf
+import soundfile as sf
 from scipy import signal
 
 #read .wav file 
